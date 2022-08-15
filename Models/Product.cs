@@ -27,10 +27,24 @@ namespace ClassroomStart.Models
         public int QuantityOnHand { get; set; }
         [Column(TypeName = "int(11)")]
         public int Minimum { get; set; }
-        [Column(TypeName = "int(11)")]
-        public int Cost { get; set; }
-        [Column("Sale Price", TypeName = "int(11)")]
-        public int SalePrice { get; set; }
+        [Precision(5, 2)]
+        public decimal Cost { get; set; }
+        [Column("Sale Price")]
+        [Precision(5, 0)]
+        private decimal saleprice;
+        public decimal SalePrice {
+            get
+            {
+                return saleprice;
+            }
+                
+                
+                private set
+            {
+                saleprice = Cost + 0.6m * Cost;
+
+            }
+        }
 
         [ForeignKey("ProductCategoryId")]
         [InverseProperty("Products")]

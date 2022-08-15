@@ -35,6 +35,24 @@ namespace ClassroomStart.Data
         {
             modelBuilder.UseCollation("utf8mb4_general_ci")
                 .HasCharSet("utf8mb4");
+            //Seed Data
+            modelBuilder.Entity<Product>().HasData(new Product()
+            {
+                Id = 1,
+                ProductCategoryId = 1,
+                ProductName = "White Toner",
+                QuantityOnHand = 6,
+                Minimum = 4,
+                Cost = 225.00m,
+
+            }
+            );
+            modelBuilder.Entity<ProductCategory>().HasData(new ProductCategory()
+            {
+                Id = 1,
+                CategoryName = "Paint",
+            }
+                );
 
             modelBuilder.Entity<Product>(entity =>
             {
