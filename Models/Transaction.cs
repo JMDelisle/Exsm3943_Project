@@ -12,6 +12,22 @@ namespace ClassroomStart.Models
     [Index("ProductNameId", Name = "Product Name ID")]
     public partial class Transaction
     {
+
+        public Transaction(int customerId, int productCategoryId, int productNameId, DateTime timeDateOfOrder, int quantityOrdered, decimal individualPrice, decimal extendedPrice, decimal totalPrice, Customer customer, ProductCategory productCategory, Product productName)
+        {
+            CustomerId = customerId;
+            ProductCategoryId = productCategoryId;
+            ProductNameId = productNameId;
+            TimeDateOfOrder = timeDateOfOrder;
+            QuantityOrdered = quantityOrdered;
+            IndividualPrice = individualPrice;
+            ExtendedPrice = extendedPrice;
+            TotalPrice = totalPrice;
+            Customer = customer;
+            ProductCategory = productCategory;
+            ProductName = productName;
+        }
+
         [Key]
         [Column("ID", TypeName = "int(11)")]
         public int Id { get; set; }
@@ -34,6 +50,14 @@ namespace ClassroomStart.Models
         [Column("Total Price")]
         [Precision(10, 2)]
         public decimal TotalPrice { get; set; }
+
+
+
+
+
+
+
+
 
         [ForeignKey("CustomerId")]
         [InverseProperty("Transactions")]
