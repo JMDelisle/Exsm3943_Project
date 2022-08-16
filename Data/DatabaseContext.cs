@@ -99,11 +99,76 @@ namespace ClassroomStart.Data
                  NameLast = "Clapton",
                  PhoneNumber = "676-444-1234",
                  Address = "20 Compton Way"
+             },
+             new Customer()
+             {
+                 Id = 3,
+                 NameFirst = "Bill",
+                 NameLast = "Murray",
+                 PhoneNumber = "222-911-0000",
+                 Address = "777 GTA V Street"
+              },
 
+              new Customer()
+              {
+                  Id = 4,
+                  NameFirst = "Nancy",
+                  NameLast = "Peluso",
+                  PhoneNumber = "455-120-8888",
+                  Address = "11 White House"
+              },
 
+               new Customer()
+               {
+                   Id = 5,
+                   NameFirst = "Sandy",
+                   NameLast = "Seashore",
+                   PhoneNumber = "321-999-5657",
+                   Address = "99 Beachwood Lane"
 
+               },
 
-             });
+               new Customer()
+               {
+                   Id = 6,
+                   NameFirst = "Sara",
+                   NameLast = "Bigwood",
+                   PhoneNumber = "400-000-0001",
+                   Address = "560 Hellsgate Inn"
+               },
+                new Customer()
+                {
+                    Id = 7,
+                    NameFirst = "Peter",
+                    NameLast = "Gabriel",
+                    PhoneNumber = "299-877-0099",
+                    Address = "411 Eagle Street"
+                },
+                new Customer()
+                {
+                    Id = 8,
+                    NameFirst = "Winnie",
+                    NameLast = "DaPooh",
+                    PhoneNumber = "666-111-5450",
+                    Address = "100 Acre Woods"
+                },
+                new Customer()
+                {
+                    Id = 9,
+                    NameFirst = "Charlie",
+                    NameLast = "Brown",
+                    PhoneNumber = "244-444-0003",
+                    Address = "99 Peanuts Avenue"
+                },
+                 new Customer()
+                 {
+                     Id = 10,
+                     NameFirst = "Phil",
+                     NameLast = "Collins",
+                     PhoneNumber = "321-999-0379",
+                     Address = "#2 Air Tonite Way"
+                 
+                  });
 
                    
 
