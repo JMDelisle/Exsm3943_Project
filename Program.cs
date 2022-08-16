@@ -18,13 +18,9 @@ class Program
         while (!successfull)
         {
             // Main Menu Displayed
-
             Console.WriteLine("\n Bits and Bytes Autobody Shop\t\tNOT LOGGED IN\n\t\t\tMain Menu\n\t\t\n\n1) Log In\n\t\t2) Admin Menu\n\t\t3) Exit\n");
-
             Console.Write(" Please choose: ");
             var input = Console.ReadLine();
-
-            // Log in
             if (input == "1")
             {
                 Console.Write("\n Enter your account Phone Number ");
@@ -35,7 +31,6 @@ class Program
                     // Loop through every record in the Customer table...
                     foreach (Customer customer in context.Customers.ToList())
                     {
-
                         Console.WriteLine(customer.NameFirst + " " + customer.NameLast + " " + customer.PhoneNumber);
                         // Test if the current customer.PhoneNumber = the phone number the user entered (in variable phonenumber)
                         if (userNumber != customer.PhoneNumber)
@@ -47,11 +42,16 @@ class Program
                             {
                                 goto Start;
                             }
-                            else
+
+
+                        else
+                        {
+                            Console.WriteLine("Welcome Back " + customer.NameFirst +"!\n What Product Category are you lookiing for today?");
+                            foreach (ProductCategory productCategory in context.ProductCategories.ToList())
                             {
-                                Console.WriteLine("Woo Hoo it worked");
-                                break;
+                                Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
                             }
+                        }
                         }
                         // test flag if true {found customer do stuff}
                         // else{no matching customer found enter new cuystomer or new phone number}
@@ -78,7 +78,7 @@ class Program
                                 goto Password;
                             }
                             else
-                            {//all admin menu code below this {
+                            {//all admin menu code below this 
                              //here we need to build and code the admin menu
 
                                 /*menu needs to have 
@@ -89,25 +89,20 @@ class Program
                                 */
 
 
-                            }//all admin menu code above this }
-
+                            }//all admin menu code above this
                         }
-
                         // Exit Bits and Byyes Sales System
                         if (input == "3")
                         {
                             Console.WriteLine("\n Goodbye " + username + "\n");
                             successfull = true;
                         }
-
                         // Invalid entry by user :(
                         else
                         {
                             Console.WriteLine("\n * * * Invalid Menu Selection, Try again * * *\n");
                         }
-
                     }
-
                 }
             }
         }
