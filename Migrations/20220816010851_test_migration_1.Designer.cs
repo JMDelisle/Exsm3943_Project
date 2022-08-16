@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassroomStart.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220815222038_test_migration_1")]
+    [Migration("20220816010851_test_migration_1")]
     partial class test_migration_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,7 +87,8 @@ namespace ClassroomStart.Migrations
                         .HasColumnName("Quantity On Hand");
 
                     b.Property<decimal>("SalePrice")
-                        .HasColumnType("decimal(65,30)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
@@ -104,6 +105,36 @@ namespace ClassroomStart.Migrations
                             ProductCategoryId = 1,
                             ProductName = "White Toner",
                             QuantityOnHand = 6,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Cost = 200.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Black Toner",
+                            QuantityOnHand = 3,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Cost = 600.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Red Toner",
+                            QuantityOnHand = 5,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Cost = 500.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Orange Toner",
+                            QuantityOnHand = 5,
                             SalePrice = 0m
                         });
                 });
@@ -179,8 +210,7 @@ namespace ClassroomStart.Migrations
 
                     b.HasIndex(new[] { "CustomerId" }, "Customer ID");
 
-                    b.HasIndex(new[] { "ProductCategoryId" }, "Product Category ID")
-                        .HasDatabaseName("Product Category ID1");
+                    b.HasIndex(new[] { "ProductCategoryId" }, "Product Category ID1");
 
                     b.HasIndex(new[] { "ProductNameId" }, "Product Name ID");
 

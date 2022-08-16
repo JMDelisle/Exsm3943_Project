@@ -63,7 +63,7 @@ namespace ClassroomStart.Migrations
                     QuantityOnHand = table.Column<int>(name: "Quantity On Hand", type: "int(11)", nullable: false),
                     Minimum = table.Column<int>(type: "int(11)", nullable: false),
                     Cost = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
-                    SalePrice = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
+                    SalePrice = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -122,7 +122,13 @@ namespace ClassroomStart.Migrations
             migrationBuilder.InsertData(
                 table: "products",
                 columns: new[] { "ID", "Cost", "Minimum", "Product Category ID", "Product Name", "Quantity On Hand", "SalePrice" },
-                values: new object[] { 1, 225.00m, 4, 1, "White Toner", 6, 360.000m });
+                values: new object[,]
+                {
+                    { 1, 225.00m, 4, 1, "White Toner", 6, 360.000m },
+                    { 2, 200.00m, 4, 1, "Black Toner", 3, 320.000m },
+                    { 3, 600.00m, 4, 1, "Red Toner", 5, 960.000m },
+                    { 4, 500.00m, 4, 1, "Orange Toner", 5, 800.000m }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "Product Category ID",
