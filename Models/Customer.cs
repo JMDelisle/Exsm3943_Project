@@ -28,6 +28,9 @@ namespace ClassroomStart.Models
         [StringLength(50)]
         public string Address { get; set; } = null!;
 
+
+
+
         [InverseProperty("Customer")]
         public virtual ICollection<Transaction> Transactions { get; set; }
     }

@@ -83,6 +83,31 @@ namespace ClassroomStart.Data
                 }
         );
 
+            modelBuilder.Entity<Customer>().HasData(new Customer()
+            {
+                Id = 1,
+                NameFirst = "Phil",
+                NameLast = "Esposito",
+                PhoneNumber = "333-555-6767",
+                Address = "321 Elm Street"
+            },
+
+             new Customer()
+             {
+                 Id = 2,
+                 NameFirst = "Eric",
+                 NameLast = "Clapton",
+                 PhoneNumber = "676-444-1234",
+                 Address = "20 Compton Way"
+
+
+
+
+             });
+
+                   
+
+
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasOne(d => d.ProductCategory)
@@ -90,7 +115,7 @@ namespace ClassroomStart.Data
                     .HasForeignKey(d => d.ProductCategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("products_ibfk_1");
-            });
+    });
 
             modelBuilder.Entity<Transaction>(entity =>
             {
@@ -100,20 +125,25 @@ namespace ClassroomStart.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("transactions_ibfk_1");
 
-                entity.HasOne(d => d.ProductCategory)
+    entity.HasOne(d => d.ProductCategory)
                     .WithMany(p => p.Transactions)
                     .HasForeignKey(d => d.ProductCategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("transactions_ibfk_2");
 
-                entity.HasOne(d => d.ProductName)
+    entity.HasOne(d => d.ProductName)
                     .WithMany(p => p.Transactions)
                     .HasForeignKey(d => d.ProductNameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("transactions_ibfk_3");
-            });
+});
 
-            OnModelCreatingPartial(modelBuilder);
+
+
+
+
+
+OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

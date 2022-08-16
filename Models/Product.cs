@@ -15,6 +15,7 @@ namespace ClassroomStart.Models
             Transactions = new HashSet<Transaction>();
         }
 
+
         [Key]
         [Column("ID", TypeName = "int(11)")]
         public int Id { get; set; }
@@ -42,7 +43,9 @@ namespace ClassroomStart.Models
                 saleprice = Cost + (0.6m * Cost);
             }
         }
-        [Precision(10, 2)]
+
+
+
 
         [ForeignKey("ProductCategoryId")]
         [InverseProperty("Products")]

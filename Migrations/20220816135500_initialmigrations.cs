@@ -4,7 +4,7 @@
 
 namespace ClassroomStart.Migrations
 {
-    public partial class intialmigrations : Migration
+    public partial class initialmigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
