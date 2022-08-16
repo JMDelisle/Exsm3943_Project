@@ -13,20 +13,6 @@ namespace ClassroomStart.Models
     public partial class Transaction
     {
 
-        public Transaction(int customerId, int productCategoryId, int productNameId, DateTime timeDateOfOrder, int quantityOrdered, decimal individualPrice, decimal extendedPrice, decimal totalPrice, Customer customer, ProductCategory productCategory, Product productName)
-        {
-            CustomerId = customerId;
-            ProductCategoryId = productCategoryId;
-            ProductNameId = productNameId;
-            TimeDateOfOrder = timeDateOfOrder;
-            QuantityOrdered = quantityOrdered;
-            IndividualPrice = individualPrice;
-            ExtendedPrice = extendedPrice;
-            TotalPrice = totalPrice;
-            Customer = customer;
-            ProductCategory = productCategory;
-            ProductName = productName;
-        }
 
         [Key]
         [Column("ID", TypeName = "int(11)")]

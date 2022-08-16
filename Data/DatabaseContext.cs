@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ClassroomStart.Models;
 
-namespace ClassroomStart.Data
+namespace ClassroomStart.Models
 {
     public partial class DatabaseContext : DbContext
     {

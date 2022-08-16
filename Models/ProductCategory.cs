@@ -10,8 +10,6 @@ namespace ClassroomStart.Models
     public partial class ProductCategory
     {
 
-
-
         public ProductCategory()
         {
             Products = new HashSet<Product>();
