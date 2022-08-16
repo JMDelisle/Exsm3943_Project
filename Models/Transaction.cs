@@ -8,7 +8,7 @@ namespace ClassroomStart.Models
 {
     [Table("transactions")]
     [Index("CustomerId", Name = "Customer ID")]
-    [Index("ProductCategoryId", Name = "Product Category ID")]
+    [Index("ProductCategoryId", Name = "Product Category ID1")]
     [Index("ProductNameId", Name = "Product Name ID")]
     public partial class Transaction
     {
