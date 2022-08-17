@@ -18,22 +18,28 @@ class Program
         while (!successfull)
         {
             // Main Menu Displayed
-            Console.WriteLine("\n Bits and Bytes Autobody Shop\t\tNOT LOGGED IN\n\t\t\tMain Menu\n\t\t\n\n1) Log In\n\t\t2) Admin Menu\n\t\t3) Exit\n");
+            Console.WriteLine("\n Bits and Bytes Autobody Shop\t\tNOT LOGGED IN\n\t\t\tMain Menu\n\t\t\n\n\n\t\t1) Log In\n\t\t2) Admin Menu\n\t\t3) Exit\n");
             Console.Write(" Please choose: ");
             var input = Console.ReadLine();
             if (input == "1")
             {
                 Console.Write("\n Enter your account Phone Number ");
-                var userNumber = Console.ReadLine();
+                string userNumber = Console.ReadLine(); // don't use var
                 // querry on database for the customers table on the phone number column
                 using (DatabaseContext context = new DatabaseContext())
                 {
-                    // Loop through every record in the Customer table...
+                    // Loop through every phone number in the Customer table...
                     foreach (Customer customer in context.Customers.ToList())
-                    {
-                        Console.WriteLine(customer.NameFirst + " " + customer.NameLast + " " + customer.PhoneNumber);
+                  {
+                       Console.WriteLine(customer.NameFirst + " " + customer.NameLast + " " + customer.PhoneNumber); // testing only
+
+                        // Console.WriteLine(userNumber); testing only
+                        // Console.WriteLine(customer.PhoneNumber); testing only
+
                         // Test if the current customer.PhoneNumber = the phone number the user entered (in variable phonenumber)
-                        if (userNumber != customer.PhoneNumber)
+                        
+                    if (userNumber != customer.PhoneNumber)
+
                         {
                             Console.WriteLine("Phone Number not found, Would you Like to add it to the system?");
                             var answer = Console.ReadLine();
@@ -57,6 +63,7 @@ class Program
                         // else{no matching customer found enter new cuystomer or new phone number}
                     }
                     // Login Bits and Bytes Admin
+                   //
                     if (input == "2")
                     {
                     AdminName:
