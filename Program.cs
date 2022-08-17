@@ -191,14 +191,6 @@ class Program
             }
         }
 
-
-
-        static void addStock()
-        {
-            Console.WriteLine("adding stock");
-            Console.ReadKey();
-
-        }
         static void removeStock()
         {
             Console.WriteLine("Removing stock...press any key to continue...");
@@ -222,28 +214,6 @@ class Program
             int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
         }
 
-
-    }
-
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         static void flagProduct()
         {
             Console.WriteLine("Flagging Stock for DISCONTINUATION...press any key to continue...");
@@ -257,9 +227,9 @@ class Program
 
                 Console.WriteLine("\n Enter the Product Category Number You Want to DISCONTINUE: ");
                 int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
-                
-                
-                
+
+
+
 
 
 
@@ -271,21 +241,6 @@ class Program
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-}
+
+ }
