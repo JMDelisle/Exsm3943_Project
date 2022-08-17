@@ -88,7 +88,7 @@ namespace ClassroomStart.Models
                 Id = 1,
                 NameFirst = "Phil",
                 NameLast = "Esposito",
-                PhoneNumber = "333-555-6767",
+                PhoneNumber = "290-933-5657",
                 Address = "321 Elm Street"
             },
 
@@ -97,7 +97,7 @@ namespace ClassroomStart.Models
                  Id = 2,
                  NameFirst = "Eric",
                  NameLast = "Clapton",
-                 PhoneNumber = "676-444-1234",
+                 PhoneNumber = "644-379-6163",
                  Address = "20 Compton Way"
              },
              new Customer()
@@ -105,7 +105,7 @@ namespace ClassroomStart.Models
                  Id = 3,
                  NameFirst = "Bill",
                  NameLast = "Murray",
-                 PhoneNumber = "222-911-0000",
+                 PhoneNumber = "871-972-7144",
                  Address = "777 GTA V Street"
               },
 
@@ -114,7 +114,7 @@ namespace ClassroomStart.Models
                   Id = 4,
                   NameFirst = "Nancy",
                   NameLast = "Peluso",
-                  PhoneNumber = "455-120-8888",
+                  PhoneNumber = "672-359-1685",
                   Address = "11 White House"
               },
 
@@ -123,7 +123,7 @@ namespace ClassroomStart.Models
                    Id = 5,
                    NameFirst = "Sandy",
                    NameLast = "Seashore",
-                   PhoneNumber = "321-999-5657",
+                   PhoneNumber = "331-423-0749",
                    Address = "99 Beachwood Lane"
 
                },
@@ -133,7 +133,7 @@ namespace ClassroomStart.Models
                    Id = 6,
                    NameFirst = "Sara",
                    NameLast = "Bigwood",
-                   PhoneNumber = "400-000-0001",
+                   PhoneNumber = "976-832-8846",
                    Address = "560 Hellsgate Inn"
                },
                 new Customer()
@@ -141,7 +141,7 @@ namespace ClassroomStart.Models
                     Id = 7,
                     NameFirst = "Peter",
                     NameLast = "Gabriel",
-                    PhoneNumber = "299-877-0099",
+                    PhoneNumber = "407-321-1120",
                     Address = "411 Eagle Street"
                 },
                 new Customer()
@@ -149,7 +149,7 @@ namespace ClassroomStart.Models
                     Id = 8,
                     NameFirst = "Winnie",
                     NameLast = "DaPooh",
-                    PhoneNumber = "666-111-5450",
+                    PhoneNumber = "703-814-7093",
                     Address = "100 Acre Woods"
                 },
                 new Customer()
@@ -157,7 +157,7 @@ namespace ClassroomStart.Models
                     Id = 9,
                     NameFirst = "Charlie",
                     NameLast = "Brown",
-                    PhoneNumber = "244-444-0003",
+                    PhoneNumber = "565-734-5713",
                     Address = "99 Peanuts Avenue"
                 },
                  new Customer()
@@ -165,7 +165,7 @@ namespace ClassroomStart.Models
                      Id = 10,
                      NameFirst = "Phil",
                      NameLast = "Collins",
-                     PhoneNumber = "321-999-0379",
+                     PhoneNumber = "490-817-3191",
                      Address = "#2 Air Tonite Way"
                  
                   });

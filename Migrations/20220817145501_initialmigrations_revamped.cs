@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomStart.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class initialmigrations_revamped : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,16 +119,16 @@ namespace ClassroomStart.Migrations
                 columns: new[] { "ID", "Address", "Name(First)", "Name(Last)", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 1, "321 Elm Street", "Phil", "Esposito", "333-555-6767" },
-                    { 2, "20 Compton Way", "Eric", "Clapton", "676-444-1234" },
-                    { 3, "777 GTA V Street", "Bill", "Murray", "222-911-0000" },
-                    { 4, "11 White House", "Nancy", "Peluso", "455-120-8888" },
-                    { 5, "99 Beachwood Lane", "Sandy", "Seashore", "321-999-5657" },
-                    { 6, "560 Hellsgate Inn", "Sara", "Bigwood", "400-000-0001" },
-                    { 7, "411 Eagle Street", "Peter", "Gabriel", "299-877-0099" },
-                    { 8, "100 Acre Woods", "Winnie", "DaPooh", "666-111-5450" },
-                    { 9, "99 Peanuts Avenue", "Charlie", "Brown", "244-444-0003" },
-                    { 10, "#2 Air Tonite Way", "Phil", "Collins", "321-999-0379" }
+                    { 1, "321 Elm Street", "Phil", "Esposito", "290-933-5657" },
+                    { 2, "20 Compton Way", "Eric", "Clapton", "644-379-6163" },
+                    { 3, "777 GTA V Street", "Bill", "Murray", "871-972-7144" },
+                    { 4, "11 White House", "Nancy", "Peluso", "672-359-1685" },
+                    { 5, "99 Beachwood Lane", "Sandy", "Seashore", "331-423-0749" },
+                    { 6, "560 Hellsgate Inn", "Sara", "Bigwood", "976-832-8846" },
+                    { 7, "411 Eagle Street", "Peter", "Gabriel", "407-321-1120" },
+                    { 8, "100 Acre Woods", "Winnie", "DaPooh", "703-814-7093" },
+                    { 9, "99 Peanuts Avenue", "Charlie", "Brown", "565-734-5713" },
+                    { 10, "#2 Air Tonite Way", "Phil", "Collins", "490-817-3191" }
                 });
 
             migrationBuilder.InsertData(

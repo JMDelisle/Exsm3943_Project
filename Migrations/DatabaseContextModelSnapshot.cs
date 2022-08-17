@@ -62,7 +62,7 @@ namespace ClassroomStart.Migrations
                             Address = "321 Elm Street",
                             NameFirst = "Phil",
                             NameLast = "Esposito",
-                            PhoneNumber = "333-555-6767"
+                            PhoneNumber = "290-933-5657"
                         },
                         new
                         {
@@ -70,7 +70,7 @@ namespace ClassroomStart.Migrations
                             Address = "20 Compton Way",
                             NameFirst = "Eric",
                             NameLast = "Clapton",
-                            PhoneNumber = "676-444-1234"
+                            PhoneNumber = "644-379-6163"
                         },
                         new
                         {
@@ -78,7 +78,7 @@ namespace ClassroomStart.Migrations
                             Address = "777 GTA V Street",
                             NameFirst = "Bill",
                             NameLast = "Murray",
-                            PhoneNumber = "222-911-0000"
+                            PhoneNumber = "871-972-7144"
                         },
                         new
                         {
@@ -86,7 +86,7 @@ namespace ClassroomStart.Migrations
                             Address = "11 White House",
                             NameFirst = "Nancy",
                             NameLast = "Peluso",
-                            PhoneNumber = "455-120-8888"
+                            PhoneNumber = "672-359-1685"
                         },
                         new
                         {
@@ -94,7 +94,7 @@ namespace ClassroomStart.Migrations
                             Address = "99 Beachwood Lane",
                             NameFirst = "Sandy",
                             NameLast = "Seashore",
-                            PhoneNumber = "321-999-5657"
+                            PhoneNumber = "331-423-0749"
                         },
                         new
                         {
@@ -102,7 +102,7 @@ namespace ClassroomStart.Migrations
                             Address = "560 Hellsgate Inn",
                             NameFirst = "Sara",
                             NameLast = "Bigwood",
-                            PhoneNumber = "400-000-0001"
+                            PhoneNumber = "976-832-8846"
                         },
                         new
                         {
@@ -110,7 +110,7 @@ namespace ClassroomStart.Migrations
                             Address = "411 Eagle Street",
                             NameFirst = "Peter",
                             NameLast = "Gabriel",
-                            PhoneNumber = "299-877-0099"
+                            PhoneNumber = "407-321-1120"
                         },
                         new
                         {
@@ -118,7 +118,7 @@ namespace ClassroomStart.Migrations
                             Address = "100 Acre Woods",
                             NameFirst = "Winnie",
                             NameLast = "DaPooh",
-                            PhoneNumber = "666-111-5450"
+                            PhoneNumber = "703-814-7093"
                         },
                         new
                         {
@@ -126,7 +126,7 @@ namespace ClassroomStart.Migrations
                             Address = "99 Peanuts Avenue",
                             NameFirst = "Charlie",
                             NameLast = "Brown",
-                            PhoneNumber = "244-444-0003"
+                            PhoneNumber = "565-734-5713"
                         },
                         new
                         {
@@ -134,7 +134,7 @@ namespace ClassroomStart.Migrations
                             Address = "#2 Air Tonite Way",
                             NameFirst = "Phil",
                             NameLast = "Collins",
-                            PhoneNumber = "321-999-0379"
+                            PhoneNumber = "490-817-3191"
                         });
                 });
 
