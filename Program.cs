@@ -10,9 +10,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        Start:
+    Start:
         Console.Clear();
-        //Main Menu Looping
+        //Declarations
         bool bInMenu = true;
         string? username;
         string? adminName = "ADMIN";
@@ -20,7 +20,7 @@ class Program
         bool bFoundCustomer;
         string? sCustomerName;
         int iCustomerID;
-        
+        int[] dicontinuedProduct = new int[99999];
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
         {
@@ -29,7 +29,7 @@ class Program
             sCustomerName = "";
             iCustomerID = 0;
             username = "";
-                
+
             Console.Clear();
 
             //Displayed Menu
@@ -40,11 +40,11 @@ class Program
             // Customer Login to their account
             if (input == "1")
             {
-                
+
                 Console.WriteLine("\n Enter your account phone number: ");
                 string? sCustomerPhoneNumber = Console.ReadLine();
                 // Querry on database for the customers table on the phone number column
-                using (DatabaseContext context = new ())
+                using (DatabaseContext context = new())
                 {
                     //Debug: Sandy, 321-999-5657
                     try
@@ -79,7 +79,7 @@ class Program
                         string? sAddress = Console.ReadLine();
                         try
                         {
-                            using (DatabaseContext context = new ())
+                            using (DatabaseContext context = new())
                             {
 #pragma warning disable CS8604 // Possible null reference argument.
                                 context.Customers.Add(new Customer(sNameFirst, sNameLast, sPhoneNumber, sAddress));
@@ -88,7 +88,8 @@ class Program
                             }
                             Console.WriteLine(" New Customer Added.");
                             bFoundCustomer = true;
-                        } catch
+                        }
+                        catch
                         {
                             Console.WriteLine(" Customer Add FAILED.");
                             bFoundCustomer = false;
@@ -100,7 +101,7 @@ class Program
                 if (bFoundCustomer)
                 {
                     Console.WriteLine("Welcome Back " + sCustomerName + "!\n What product category are you looking for today?"); // After this line should display all product category
-                    using (DatabaseContext context = new ())
+                    using (DatabaseContext context = new())
                     {
                         foreach (ProductCategory productCategory in context.ProductCategories.ToList())
                         {
@@ -111,7 +112,7 @@ class Program
                     string? sProductCategory = Console.ReadLine();
                 }
             }
-            
+
             // Admin Menu
             else if (input == "2")
             {
@@ -125,7 +126,7 @@ class Program
                     Console.WriteLine("Incorrect. Try Again!");
                     Console.ReadKey();
                 }
-                else 
+                else
                 {
                     //  Admin Menu
                     // ------------
@@ -134,32 +135,43 @@ class Program
                     // 3) Flag product as discontinued
                     // 0) Exit
                     int adminSelection = -1;
-                    while (adminSelection != 3)
+                    while (adminSelection != 4)
                     {
+                    AdminMenu:
                         Console.Clear();
                         Console.WriteLine("\n\n\t\t\tBits & Bytes Admin Menu\n\n\t\t1) Add Stock to Inventory\n\t\t2) Remove Stock from Inventory\n\t\t3) Flag Stock as DISCONTINUED\n\t\t4) Log Out of ADMIN MENU\n\n\t\t\tPlease make your selection: ");
-                    }
-                    try
-                    {
-                        adminSelection = Int32.Parse((Console.ReadLine() ?? " ").Trim());
-                        switch (adminSelection)
+
+                        try
                         {
-                            case 1://add stock
+                            adminSelection = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+                            switch (adminSelection)
+                            {
+                                case 1://add stock
+                                    addStock();
+                                    break;
 
-                            case 2://remove stock
+                                case 2://remove stock
+                                    removeStock();
+                                    break;
 
-                            case 3://flag stock as discontinued
+                                case 3://flag stock as discontinued
+                                    flagProduct();
+                                    break;
 
-                            case 4://log out
-                                goto Start;
+                                case 4://log out
+                                    goto Start;
 
-                            default:
-                                break;
+                                default:
+                                    break;
+                            }
                         }
-                    }
-                    catch
-                    {
-                        break;
+                        catch
+                        {
+                            Console.WriteLine("Not a good menu choice!  Dummy...\n\tPress any key to continue.......");
+                            Console.ReadKey();
+
+                            goto AdminMenu;
+                        }
                     }
                 }
             }
@@ -178,5 +190,62 @@ class Program
                 Console.ReadKey();
             }
         }
+
+
+
+        static void addStock()
+        {
+            Console.WriteLine("adding stock");
+            Console.ReadKey();
+
+        }
+        static void removeStock()
+        {
+            Console.WriteLine("Removing stock...press any key to continue...");
+            Console.ReadKey();
+        }
+        static void flagProduct()
+        {
+            Console.WriteLine("Flagging Stock for DISCONTINUATION...press any key to continue...");
+            Console.ReadKey();
+            using (DatabaseContext context = new())
+            {
+                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
+                {
+                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                }
+
+                Console.WriteLine("\n Enter the Product Category Number You Want to DISCONTINUE: ");
+                int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
+                
+                
+                
+
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

@@ -104,6 +104,98 @@ namespace ClassroomStart.Models
                     Minimum = 4,
                     Cost = 500.00m,
                 }
+
+               /* new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },
+                new Product()
+                {
+                    Id = ,
+                    ProductCategoryId = ,
+                    ProductName = "",
+                    QuantityOnHand = ,
+                    Minimum = ,
+                    Cost = m,
+                },*/
+
         );
 
             modelBuilder.Entity<Customer>().HasData(new Customer()
