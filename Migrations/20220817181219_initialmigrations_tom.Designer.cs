@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassroomStart.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220817145501_initialmigrations_revamped")]
-    partial class initialmigrations_revamped
+    [Migration("20220817181219_initialmigrations_tom")]
+    partial class initialmigrations_tom
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -243,6 +243,26 @@ namespace ClassroomStart.Migrations
                         {
                             Id = 1,
                             CategoryName = "Paint"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "SandPaper"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Filler"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryName = "PPE"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryName = "Shop Supplies"
                         });
                 });
 

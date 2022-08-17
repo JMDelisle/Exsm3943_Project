@@ -241,6 +241,26 @@ namespace ClassroomStart.Migrations
                         {
                             Id = 1,
                             CategoryName = "Paint"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "SandPaper"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Filler"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryName = "PPE"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryName = "Shop Supplies"
                         });
                 });
 

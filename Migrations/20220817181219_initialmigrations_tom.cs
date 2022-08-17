@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomStart.Migrations
 {
-    public partial class initialmigrations_revamped : Migration
+    public partial class initialmigrations_tom : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -134,7 +134,14 @@ namespace ClassroomStart.Migrations
             migrationBuilder.InsertData(
                 table: "product category",
                 columns: new[] { "ID", "Category Name" },
-                values: new object[] { 1, "Paint" });
+                values: new object[,]
+                {
+                    { 1, "Paint" },
+                    { 2, "SandPaper" },
+                    { 3, "Filler" },
+                    { 4, "PPE" },
+                    { 5, "Shop Supplies" }
+                });
 
             migrationBuilder.InsertData(
                 table: "products",

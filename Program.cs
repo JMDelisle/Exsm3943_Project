@@ -3,122 +3,160 @@ using System.IO;
 using ClassroomStart.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 class Program
 {
     static void Main(string[] args)
     {
         //Main Menu Looping
-        bool successfull = false;
-        string username = "";
+        bool bInMenu = true;
+        string username;
         string adminName = "ADMIN";
         string adminPassword = "PASSWORD";
-
-        Start:
-        while (!successfull)
+        bool bFoundCustomer;
+        string sCustomerName;
+        int iCustomerID;
+        // MAIN MENU LOOP STARTS HERE
+        while (bInMenu)
         {
+            // RESET VARIABLES, IMPORTANT
+            bFoundCustomer = false;
+            sCustomerName = "";
+            iCustomerID = 0;
+            username = "";
+                
             Console.Clear();
 
             //Displayed Menu
             Console.WriteLine("\t\t\t\t\tBits and Bytes Autobody Shop \n\n\t\t\t\t\t\tNOT LOGGED IN \n\n\t\t\t\t\t\t Main Menu \t\n 1) Login \t\n 2) Admin Menu \t\n 3) Exit ");
             Console.Write("Please choose: ");
             var input = Console.ReadLine();
+
+            // Customer Login to their account
             if (input == "1")
             {
                 Console.WriteLine("\n Enter your account phone number: ");
-                string userNumber = Console.ReadLine();
+                string sCustomerPhoneNumber = Console.ReadLine();
                 // Querry on database for the customers table on the phone number column
                 using (DatabaseContext context = new DatabaseContext())
                 {
-                    foreach (Customer customer in context.Customers.ToList())
+                    //Debug: Sandy, 321-999-5657
+                    try
                     {
-                       // context.Customers.Where(x => x.PhoneNumber == customer).Single().RecieveStock();            // to call a Single customer not a whole list.
-                        context.SaveChanges();
-                       // Console.WriteLine(customer.NameFirst + " " + customer.NameLast + " " + customer.PhoneNumber);
-
-                        //To test if the current customer.PhoneNumber = the phone number the user entered (in variable PhoneNumber)
-                        if (userNumber != customer.PhoneNumber)
-                        {
-                            Console.WriteLine("Phone number not found, Would you like to add it to the system? ");
-                            string answer = Console.ReadLine();
-
-                            if (answer != "Y")
-                            {
-                                goto Start; // If yes to add new customer, prompt customer information firstname, lastname, phonenumber, address
-                            }
-                            else if (answer != "N")
-                            {
-                                goto Start;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Welcome Back " + customer.NameFirst + "!\n What product category are you looking for today?"); // After this line should display all product category
-                                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
-                                {
-                                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
-                                }
-                            }
-                            // 
-
-                        }
+                        var oCust = context.Customers.Where(customer => customer.PhoneNumber == sCustomerPhoneNumber).Single();
+                        Console.WriteLine("Yes!  " + oCust.NameFirst);
+                        bFoundCustomer = true;
+                        sCustomerName = oCust.NameFirst + " " + oCust.NameLast;
+                        iCustomerID = oCust.Id;
                     }
-                }         
-            }
-            if (input == "2")
-            {
-            AdminName:
-                Console.WriteLine("\n Enter your Admin User Name: ");
-                username = Console.ReadLine();
-                if (username != adminName)
-                {
-                    Console.WriteLine("Incorrect. Try Again!");
-                    goto AdminName;
+                    catch
+                    {
+                        bFoundCustomer = false;
+                    }
                 }
-                else
+                //To test if the current customer.PhoneNumber = the phone number the user entered (in variable PhoneNumber)
+                if (!bFoundCustomer)
                 {
-                Password:
-                    Console.WriteLine("\n Enter your Admin Password: ");
-                    var userPassword = Console.ReadLine();
-                    if(userPassword != adminPassword)
+                    Console.Write("\nPhone number not found, Would you like to add it to the system [Y/N]? ");
+                    string? sAnswer = Console.ReadLine();
+                    if (sAnswer == null) { sAnswer = ""; } else { sAnswer = sAnswer.Trim().ToUpper(); }
+                    if (sAnswer == "Y")
                     {
-                        Console.WriteLine("Incorrect. Try Again!");
-                        goto Password;
-                    }
-                    else
-                    {
-                        // Add Stock
-                        // Remove Stock
-                        // Flag product as discontinued
-                        // 0) Exit
-                        int adminSelection = -1;
-                        while (adminSelection != 3)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("\n\n\t\t\tBits & Bytes Admin Menu\n\n\t\t1) Add Stock to Inventory\n\t\t2) Remove Stock from Inventory\n\t\t3) Flag Stock as DISCONTINUED\n\t\t0) Log Out of ADMIN MENU\n\n\t\t\tPlease make your selection: ");
-                        }
+                        // If yes to add new customer, prompt customer information firstname, lastname, phonenumber, address
+                        Console.Write("\n Enter your First Name > ");
+                        string? sNameFirst = Console.ReadLine();
+                        Console.Write("\n Enter your Last Name > ");
+                        string? sNameLast = Console.ReadLine();
+                        Console.Write("\n Enter your Phone Number > ");
+                        string? sPhoneNumber = Console.ReadLine();
+                        Console.Write("\n Enter your Address > ");
+                        string? sAddress = Console.ReadLine();
                         try
                         {
-                            adminSelection = Int32.Parse((Console.ReadLine()?? " ").Trim());
-                        }
-                        catch
+                            using (DatabaseContext context = new DatabaseContext())
+                            {
+                                context.Customers.Add(new Customer(sNameFirst, sNameLast, sPhoneNumber, sAddress));
+                                context.SaveChanges();
+                            }
+                            Console.WriteLine(" New Customer Added.");
+                            bFoundCustomer = true;
+                        } catch
                         {
-                            break;
+                            Console.WriteLine(" Customer Add FAILED.");
+                            bFoundCustomer = false;
                         }
-                    }// all admin codes above this
+                    }
+                }
+
+                // Customer Phone Number / Account Found! 
+                if (bFoundCustomer)
+                {
+                    Console.WriteLine("Welcome Back " + sCustomerName + "!\n What product category are you looking for today?"); // After this line should display all product category
+                    using (DatabaseContext context = new DatabaseContext())
+                    {
+                        foreach (ProductCategory productCategory in context.ProductCategories.ToList())
+                        {
+                            Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                        }
+                    }
+                    Console.WriteLine("\n Enter the Product Category You Want: ");
+                    var sProductCategory = Console.ReadLine();
                 }
             }
-            if (input == "3")
+            
+            // Admin Menu
+            else if (input == "2")
+            {
+                Console.WriteLine("\n Enter your Admin User Name: ");
+                username = Console.ReadLine();
+                Console.WriteLine("\n Enter your Admin Password: ");
+                var userPassword = Console.ReadLine();
+
+                if ((username != adminName) || (userPassword != adminPassword))
+                {
+                    Console.WriteLine("Incorrect. Try Again!");
+                    Console.ReadKey();
+                }
+                else 
+                {
+                    //  Admin Menu
+                    // ------------
+                    // 1) Add Stock
+                    // 2) Remove Stock
+                    // 3) Flag product as discontinued
+                    // 0) Exit
+                    int adminSelection = -1;
+                    while (adminSelection != 3)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\n\n\t\t\tBits & Bytes Admin Menu\n\n\t\t1) Add Stock to Inventory\n\t\t2) Remove Stock from Inventory\n\t\t3) Flag Stock as DISCONTINUED\n\t\t0) Log Out of ADMIN MENU\n\n\t\t\tPlease make your selection: ");
+                    }
+                    try
+                    {
+                        adminSelection = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                }
+            }
+
+            // Exit System
+            else if (input == "3")
             {
                 Console.WriteLine("\n Goodbye " + username + "\n");
-                successfull = true;
+                bInMenu = false;
             }
+
+            // 
             else // Invalid entry point by user
             {
                 Console.WriteLine("\n * * * Invalid Menu Selection, Try Again * * *\n");
                 Console.ReadKey();
-                goto Start;
             }
-
         }
     }
     public class Users

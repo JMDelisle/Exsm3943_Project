@@ -13,6 +13,14 @@ namespace ClassroomStart.Models
         {
             Transactions = new HashSet<Transaction>();
         }
+        public Customer(string sFirstName, string sLastName, string sPhoneNumber, string sAddress)
+        {
+            NameFirst = sFirstName;
+            NameLast = sLastName;
+            PhoneNumber = sPhoneNumber;
+            Address = sAddress;
+            Transactions = new HashSet<Transaction>();
+        }
 
         [Key]
         [Column("ID", TypeName = "int(11)")]
