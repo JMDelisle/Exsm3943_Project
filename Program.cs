@@ -12,12 +12,13 @@ class Program
     {
         //Main Menu Looping
         bool bInMenu = true;
-        string username;
-        string adminName = "ADMIN";
-        string adminPassword = "PASSWORD";
+        string? username;
+        string? adminName = "ADMIN";
+        string? adminPassword = "PASSWORD";
         bool bFoundCustomer;
-        string sCustomerName;
+        string? sCustomerName;
         int iCustomerID;
+        
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
         {
@@ -32,15 +33,16 @@ class Program
             //Displayed Menu
             Console.WriteLine("\t\t\t\t\tBits and Bytes Autobody Shop \n\n\t\t\t\t\t\tNOT LOGGED IN \n\n\t\t\t\t\t\t Main Menu \t\n 1) Login \t\n 2) Admin Menu \t\n 3) Exit ");
             Console.Write("Please choose: ");
-            var input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             // Customer Login to their account
             if (input == "1")
             {
+                
                 Console.WriteLine("\n Enter your account phone number: ");
-                string sCustomerPhoneNumber = Console.ReadLine();
+                string? sCustomerPhoneNumber = Console.ReadLine();
                 // Querry on database for the customers table on the phone number column
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = new ())
                 {
                     //Debug: Sandy, 321-999-5657
                     try
@@ -75,9 +77,11 @@ class Program
                         string? sAddress = Console.ReadLine();
                         try
                         {
-                            using (DatabaseContext context = new DatabaseContext())
+                            using (DatabaseContext context = new ())
                             {
+#pragma warning disable CS8604 // Possible null reference argument.
                                 context.Customers.Add(new Customer(sNameFirst, sNameLast, sPhoneNumber, sAddress));
+#pragma warning restore CS8604 // Possible null reference argument.
                                 context.SaveChanges();
                             }
                             Console.WriteLine(" New Customer Added.");
@@ -94,7 +98,7 @@ class Program
                 if (bFoundCustomer)
                 {
                     Console.WriteLine("Welcome Back " + sCustomerName + "!\n What product category are you looking for today?"); // After this line should display all product category
-                    using (DatabaseContext context = new DatabaseContext())
+                    using (DatabaseContext context = new ())
                     {
                         foreach (ProductCategory productCategory in context.ProductCategories.ToList())
                         {
@@ -102,7 +106,7 @@ class Program
                         }
                     }
                     Console.WriteLine("\n Enter the Product Category You Want: ");
-                    var sProductCategory = Console.ReadLine();
+                    string? sProductCategory = Console.ReadLine();
                 }
             }
             
@@ -112,7 +116,7 @@ class Program
                 Console.WriteLine("\n Enter your Admin User Name: ");
                 username = Console.ReadLine();
                 Console.WriteLine("\n Enter your Admin Password: ");
-                var userPassword = Console.ReadLine();
+                string? userPassword = Console.ReadLine();
 
                 if ((username != adminName) || (userPassword != adminPassword))
                 {
@@ -147,7 +151,7 @@ class Program
             // Exit System
             else if (input == "3")
             {
-                Console.WriteLine("\n Goodbye " + username + "\n");
+                Console.WriteLine("\n Goodbye " + "\n");
                 bInMenu = false;
             }
 
@@ -157,17 +161,6 @@ class Program
                 Console.WriteLine("\n * * * Invalid Menu Selection, Try Again * * *\n");
                 Console.ReadKey();
             }
-        }
-    }
-    public class Users
-    {
-        public string username;
-        public string password;
-
-        public Users(string username, string password)
-        {
-            this.username = username;
-            this.password = password;
         }
     }
 }
