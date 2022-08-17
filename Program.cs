@@ -204,6 +204,46 @@ class Program
             Console.WriteLine("Removing stock...press any key to continue...");
             Console.ReadKey();
         }
+
+
+
+        static void addStock()
+        {
+            Console.WriteLine("adding stock");
+            Console.WriteLine("Select Your Product Category:");
+            using (DatabaseContext context = new())
+            {
+                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
+                {
+                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                }
+            }
+            Console.WriteLine("\n Enter the Product Category You Want: ");
+            int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
+        }
+
+
+    }
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         static void flagProduct()
         {
             Console.WriteLine("Flagging Stock for DISCONTINUATION...press any key to continue...");
