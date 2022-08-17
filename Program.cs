@@ -191,25 +191,22 @@ class Program
         static void addStock()
         {
             Console.WriteLine("adding stock");
-            Console.ReadKey();
-            string category, name;
-            decimal price;
-            int qoh;
-
-            Console.Write("Please enter the product name: ");
-            name = Console.ReadLine().Trim();
-            Console.Write("Please enter the product category: ");
-            category = Console.ReadLine().Trim();
-            Console.Write("Please enter the new product sale price: ");
-            price = decimal.Parse(Console.ReadLine());
-            Console.Write("Please enter the new product quantity on hand: ");
-            qoh = int.Parse(Console.ReadLine());
-
-
+            Console.WriteLine("Select Your Product Category:");
+            using (DatabaseContext context = new())
+            {
+                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
+                {
+                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                }
+            }
+            Console.WriteLine("\n Enter the Product Category You Want: ");
+            int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
         }
+
 
     }
 
+ }
 
 
 
@@ -227,4 +224,4 @@ class Program
 
 
 
-}
+
