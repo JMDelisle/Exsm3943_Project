@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomStart.Migrations
 {
-    public partial class test_migration_1 : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -113,6 +113,23 @@ namespace ClassroomStart.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .Annotation("Relational:Collation", "utf8mb4_general_ci");
+
+            migrationBuilder.InsertData(
+                table: "customer",
+                columns: new[] { "ID", "Address", "Name(First)", "Name(Last)", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, "321 Elm Street", "Phil", "Esposito", "333-555-6767" },
+                    { 2, "20 Compton Way", "Eric", "Clapton", "676-444-1234" },
+                    { 3, "777 GTA V Street", "Bill", "Murray", "222-911-0000" },
+                    { 4, "11 White House", "Nancy", "Peluso", "455-120-8888" },
+                    { 5, "99 Beachwood Lane", "Sandy", "Seashore", "321-999-5657" },
+                    { 6, "560 Hellsgate Inn", "Sara", "Bigwood", "400-000-0001" },
+                    { 7, "411 Eagle Street", "Peter", "Gabriel", "299-877-0099" },
+                    { 8, "100 Acre Woods", "Winnie", "DaPooh", "666-111-5450" },
+                    { 9, "99 Peanuts Avenue", "Charlie", "Brown", "244-444-0003" },
+                    { 10, "#2 Air Tonite Way", "Phil", "Collins", "321-999-0379" }
+                });
 
             migrationBuilder.InsertData(
                 table: "product category",
