@@ -42,7 +42,28 @@ namespace ClassroomStart.Models
             {
                 Id = 1,
                 CategoryName = "Paint"
-            });
+            },
+            new ProductCategory()
+            {
+                Id = 2,
+                CategoryName = "SandPaper"
+            },
+            new ProductCategory()
+            {
+                Id = 3,
+                CategoryName = "Filler"
+            },
+            new ProductCategory()
+            {
+                Id=4,
+                CategoryName = "PPE"
+            },
+            new ProductCategory()
+            {
+                Id=5,
+                CategoryName = "Shop Supplies"
+            }
+            );
 
             modelBuilder.Entity<Product>().HasData(new Product()
             {
@@ -51,7 +72,7 @@ namespace ClassroomStart.Models
                 ProductName = "White Toner",
                 QuantityOnHand = 6,
                 Minimum = 4,
-                Cost = 225.00m,
+                Cost = 225.00m
 
             },
                 new Product()

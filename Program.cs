@@ -32,8 +32,11 @@ class Program
                 {
                     foreach (Customer customer in context.Customers.ToList())
                     {
-                        Console.WriteLine(customer.NameFirst + " " + customer.NameLast + " " + customer.PhoneNumber);
-                        //To testif the current customer.PhoneNumber = the phone number the user entered (in variable PhoneNumber)
+                       // context.Customers.Where(x => x.PhoneNumber == customer).Single().RecieveStock();            // to call a Single customer not a whole list.
+                        context.SaveChanges();
+                       // Console.WriteLine(customer.NameFirst + " " + customer.NameLast + " " + customer.PhoneNumber);
+
+                        //To test if the current customer.PhoneNumber = the phone number the user entered (in variable PhoneNumber)
                         if (userNumber != customer.PhoneNumber)
                         {
                             Console.WriteLine("Phone number not found, Would you like to add it to the system? ");
@@ -41,7 +44,7 @@ class Program
 
                             if (answer != "Y")
                             {
-                                goto Start;
+                                goto Start; // If yes to add new customer, prompt customer information firstname, lastname, phonenumber, address
                             }
                             else if (answer != "N")
                             {
@@ -49,12 +52,14 @@ class Program
                             }
                             else
                             {
-                                Console.WriteLine("Welcome Back " + customer.NameFirst + "!\n What product category are you looking for today?");
+                                Console.WriteLine("Welcome Back " + customer.NameFirst + "!\n What product category are you looking for today?"); // After this line should display all product category
                                 foreach (ProductCategory productCategory in context.ProductCategories.ToList())
                                 {
                                     Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
                                 }
                             }
+                            // 
+
                         }
                     }
                 }         
