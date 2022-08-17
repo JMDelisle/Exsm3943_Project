@@ -10,6 +10,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        Start:
+        Console.Clear();
         //Main Menu Looping
         bool bInMenu = true;
         string? username;
@@ -135,11 +137,25 @@ class Program
                     while (adminSelection != 3)
                     {
                         Console.Clear();
-                        Console.WriteLine("\n\n\t\t\tBits & Bytes Admin Menu\n\n\t\t1) Add Stock to Inventory\n\t\t2) Remove Stock from Inventory\n\t\t3) Flag Stock as DISCONTINUED\n\t\t0) Log Out of ADMIN MENU\n\n\t\t\tPlease make your selection: ");
+                        Console.WriteLine("\n\n\t\t\tBits & Bytes Admin Menu\n\n\t\t1) Add Stock to Inventory\n\t\t2) Remove Stock from Inventory\n\t\t3) Flag Stock as DISCONTINUED\n\t\t4) Log Out of ADMIN MENU\n\n\t\t\tPlease make your selection: ");
                     }
                     try
                     {
                         adminSelection = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+                        switch (adminSelection)
+                        {
+                            case 1://add stock
+
+                            case 2://remove stock
+
+                            case 3://flag stock as discontinued
+
+                            case 4://log out
+                                goto Start;
+
+                            default:
+                                break;
+                        }
                     }
                     catch
                     {
