@@ -9,6 +9,7 @@ using System.Net;
 
 class Program
 {
+    public static List<int> discontinuedProduct = new List<int>();
     static void Main(string[] args)
     {
     Start:
@@ -25,7 +26,7 @@ class Program
         string? sProdCat;
         decimal dProdPrice = 0;
         bool bQtyAvailable = false;
-        int[] dicontinuedProduct = new int[99999];
+        
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
         {
@@ -187,17 +188,25 @@ class Program
                         // If we have enough product qantity on hand lets create a transaction and
                         // then take the ordered quantity out of inventory
                         if (bQtyAvailable)
-                        {
+                        {/* Need to set a variable to save the extended price, and the total price to save into the Transaction table */
                             try
                             {
                                 using (DatabaseContext context = new())
                                 {
-                                    context.Transactions.Add(new Transaction(iCustomerID, iProductID, iProductCategory, iProductQty,
-                                        dProdPrice, (dProdPrice * iProductQty)));
+                                    Transaction newtrans = new Transaction();
+                                    newtrans.CustomerId = iCustomerID;
+                                    newtrans.ProductCategoryId = iProductID;
+                                    newtrans.ProductCategoryId = iProductID;
+                                    newtrans.TimeDateOfOrder = DateTime.Now;
+                                    newtrans.QuantityOrdered = iProductQty;
+                                    newtrans.IndividualPrice = dProdPrice;
+                                    newtrans.ExtendedPrice = dProdPrice * iProductQty;
+                                    newtrans.TotalPrice = dProdPrice * iProductQty;
+                                    context.Add(newtrans);
                                     context.SaveChanges();
                                 }
                                 Console.WriteLine("\n New Transaction Added.");
-                                bTryAgain = false;
+
                             }
                             catch
                             {
@@ -321,6 +330,8 @@ class Program
 
         static void flagProduct()
         {
+            int iProductCategory = -1;
+            int iProductSelectID = -1;
             Console.WriteLine("\tFlagging Stock for DISCONTINUATION...please wait a moment...");
             using (DatabaseContext context = new())
             {
@@ -331,22 +342,33 @@ class Program
             }
 
              Console.WriteLine("\n\tEnter the Product Category Number You Want to DISCONTINUE: ");
-             int iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
-
+            try
+            {
+                 iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+            }
+            catch
+            {
+                Console.WriteLine("Not a valid choice!");
+            }
             using (DatabaseContext context = new())
              {
                  foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
-                 {
-                   
+                 {                   
                     Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
-                    Console.ReadKey();
                  }
              }
-
             Console.WriteLine("\n Enter the Product ID NUMBER of the PRODUCT you want to DISCONTINUE");
-            int iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+            try
+            {
+                iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+            }
+            catch
+            {
+                Console.WriteLine("Not a valid choice!");
+            }
+            discontinuedProduct.Add(iProductSelectID);
 
-            
+            Console.WriteLine(discontinuedProduct);
 
         }
     }
