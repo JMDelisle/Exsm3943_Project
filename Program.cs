@@ -396,5 +396,6 @@ class Program
             Console.WriteLine(discontinuedProduct);
 
         }
+
     }
  }
