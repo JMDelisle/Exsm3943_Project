@@ -187,17 +187,25 @@ class Program
                         // If we have enough product qantity on hand lets create a transaction and
                         // then take the ordered quantity out of inventory
                         if (bQtyAvailable)
-                        {
+                        {/* Need to set a variable to save the extended price, and the total price to save into the Transaction table */
                             try
                             {
                                 using (DatabaseContext context = new())
                                 {
-                                    context.Transactions.Add(new Transaction(iCustomerID, iProductID, iProductCategory, iProductQty,
-                                        dProdPrice, (dProdPrice * iProductQty)));
+                                    Transaction newtrans = new Transaction();
+                                    newtrans.CustomerId = iCustomerID;
+                                    newtrans.ProductCategoryId = iProductID;
+                                    newtrans.ProductCategoryId = iProductID;
+                                    newtrans.TimeDateOfOrder = DateTime.Now;
+                                    newtrans.QuantityOrdered = iProductQty;
+                                    newtrans.IndividualPrice = dProdPrice;
+                                    newtrans.ExtendedPrice = dProdPrice * iProductQty;
+                                    newtrans.TotalPrice = dProdPrice * iProductQty;
+                                    context.Add(newtrans);
                                     context.SaveChanges();
                                 }
                                 Console.WriteLine("\n New Transaction Added.");
-                                bTryAgain = false;
+
                             }
                             catch
                             {
@@ -291,6 +299,7 @@ class Program
 
         static void addStock()
         {
+            int iProductCategory = -1;
             Console.WriteLine("Adding Stock");
             Console.WriteLine("Select Your Product Category:");
             using (DatabaseContext context = new())
@@ -301,9 +310,33 @@ class Program
                 }
             }
             Console.WriteLine("\n Enter the Product Category You Want: ");
-            int ProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
-        }
+            try
+            {
+                iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+                if (iProductCategory < 1 || iProductCategory > 5)
+                {
+                    Console.WriteLine("\n *** INVALID CATEGORY ... PRESS ANY KEY TO CONTINUE ***\n");
+                    Console.ReadKey();
+                    return;
+                }
+            }
+            catch
+            {
+                Console.Write("Invalid selection");
+                Console.ReadKey();
+                return;
+            }
+            using (DatabaseContext context = new())
+            {
+                foreach (Product product in context.Products.Where(prod => prod.ProductCategoryId == iProductCategory))
+                {
+                    Console.WriteLine(product.Id + "   " + product.ProductName);
+                }
+                Console.WriteLine("Choose your Product (by number): ");
+                Console.ReadLine();
+            }
 
+        }
         static void removeStock()
         {
             Console.WriteLine("\tRemoving stock...please wait a moment...");
@@ -336,10 +369,8 @@ class Program
             using (DatabaseContext context = new())
              {
                  foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
-                 {
-                   
+                 {                   
                     Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
-                    Console.ReadKey();
                  }
              }
 
