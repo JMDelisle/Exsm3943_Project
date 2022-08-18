@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomStart.Migrations
 {
-    public partial class Seeding_Migration : Migration
+    public partial class initialmigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

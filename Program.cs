@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 class Program
 {
@@ -21,7 +22,10 @@ class Program
         string? sCustomerName;
         int iCustomerID;
         string sCustAddress = "";
-        int[] flaggedProduct;
+        string? sProdCat;
+        decimal dProdPrice = 0;
+        bool bQtyAvailable = false;
+        int[] dicontinuedProduct = new int[99999];
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
         {
@@ -36,14 +40,14 @@ class Program
 
             //Displayed Menu
             Console.WriteLine("\t\t\t\t\tBits and Bytes Autobody Shop \n\n\t\t\t\t\t\tNOT LOGGED IN \n\n\t\t\t\t\t\t Main Menu \t\n 1) Login \t\n 2) Admin Menu \t\n 3) Exit ");
-            Console.Write("Please choose: ");
+            Console.Write(" Please choose: ");
             string? input = Console.ReadLine();
 
             // Customer Login to their account
             if (input == "1")
             {
 
-                Console.WriteLine("\n Enter your account phone number: ");
+                Console.Write("\n Enter your account phone number: ");
                 string? sCustomerPhoneNumber = Console.ReadLine();
                 // Querry on database for the customers table on the phone number column
                 using (DatabaseContext context = new())
@@ -52,12 +56,11 @@ class Program
                     try
                     {
                         var oCust = context.Customers.Where(customer => customer.PhoneNumber == sCustomerPhoneNumber).Single();
-                        Console.WriteLine("Yes!  " + oCust.NameFirst);
+                        // Console.WriteLine("Yes!  " + oCust.NameFirst);
                         bFoundCustomer = true;
                         sCustomerName = oCust.NameFirst + " " + oCust.NameLast;
                         iCustomerID = oCust.Id;
                         sCustAddress = oCust.Address;
-
                     }
                     catch
                     {
@@ -67,7 +70,7 @@ class Program
                 //To test if the current customer.PhoneNumber = the phone number the user entered (in variable PhoneNumber)
                 if (!bFoundCustomer)
                 {
-                    Console.Write("\nPhone number not found, Would you like to add it to the system [Y/N]? ");
+                    Console.Write("\n Phone number not found, Would you like to add it to the system [Y/N]? ");
                     string? sAnswer = Console.ReadLine();
                     if (sAnswer == null) { sAnswer = ""; } else { sAnswer = sAnswer.Trim().ToUpper(); }
                     if (sAnswer == "Y")
@@ -90,12 +93,13 @@ class Program
 #pragma warning restore CS8604 // Possible null reference argument.
                                 context.SaveChanges();
                             }
-                            Console.WriteLine(" New Customer Added.");
+                            Console.WriteLine("\n New Customer Added.");
                             bFoundCustomer = true;
                         }
                         catch
                         {
-                            Console.WriteLine(" Customer Add FAILED.");
+                            Console.Write("\n Customer Add FAILED.");
+                            Console.ReadKey();
                             bFoundCustomer = false;
                         }
                     }
@@ -104,54 +108,106 @@ class Program
                 // Customer Phone Number / Account Found! 
                 if (bFoundCustomer)
                 {
-                    Console.WriteLine("Welcome Back " + sCustomerName + "!\n What product category are you looking for today?"); // After this line should display all product category
+                    Console.WriteLine("\n Welcome Back " + sCustomerName + "!\n What product category are you looking for today?"); // After this line should display all product category
+
+                    Console.WriteLine("\n Product Category List: ");
+                    Console.WriteLine("\tID\tDescription");
+                    Console.WriteLine("\t---|-----------------");
+
                     using (DatabaseContext context = new())
                     {
                         foreach (ProductCategory productCategory in context.ProductCategories.ToList())
                         {
-                            Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                            Console.WriteLine("\t" + productCategory.Id + "\t" + productCategory.CategoryName);
                         }
                     }
-                    Console.WriteLine("\n Enter the Product Category You Want: ");
+                    Console.Write("\n Enter the Product Category You Want: ");
                     int iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
-
+                    sProdCat = "";
                     using (DatabaseContext context = new())
                     {
-                        // Output All the products from the chosen Product Category
-                        foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
+                        try
                         {
-                            Console.Clear();
-                            Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
+                            var oProdCat = context.ProductCategories.Where(category => category.Id == iProductCategory).Single();
+                            Console.WriteLine("Yes!  " + oProdCat.CategoryName);
+                            sProdCat = oProdCat.CategoryName;
+                        }
+                        catch
+                        {
+                            Console.WriteLine(" Error looking up Product Category Name.");
                         }
                     }
-                    PickProduct:
-                    Console.WriteLine("\n Enter the Product ID NUMBER of the PRODUCT you want to ORDER? ");
-                    int iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
-
-                    try
+                    bool bTryAgain = true;
+                    while (bTryAgain)
                     {
-                        //testing purposes below
-                        Console.WriteLine("\t the Customer is: " + sCustomerName);
-                        Console.WriteLine("\t the customer ID is: " + iCustomerID);
-                        Console.WriteLine("\t the customer address is: " + sCustAddress);
-                        Console.WriteLine("\t the product category selected is: " + iProductCategory + "\n\tThe product selected ID is: " + iProductSelectID );
-                      /*  using (DatabaseContext context = new())
+                        // Clear console and display all products, could use a counter to display product in pages in Version 2.0
+                        Console.Clear();
+                        Console.WriteLine("\n Product List for Category: " + sProdCat);
+                        Console.WriteLine("\tID\tDescription\tIn Stock");
+                        Console.WriteLine("\t---|-----------------|----------");
+
+                        using (DatabaseContext context = new())
                         {
-                            context.Transactions.Add(new Transaction()  //Need to have all the customer Info wrote to the Transaction table here
+                            // Output All the products from the chosen Product Category
+                            foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
                             {
-
-                            });
+                                Console.WriteLine("\t" + product.Id + "\t" + product.ProductName + "\t" + product.QuantityOnHand);
+                            }
                         }
-                      */
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error Processing order.  Please try again...press any key to continue..." + ex.Message);
+
+                        Console.Write("\n Enter the Product ID you want to Order: ");
+                        int iProductID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+                        Console.Write("\n What Quantity do you want to Order: ");
+                        int iProductQty = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+                        bQtyAvailable = false;
+                        // Do what have the requested quantity of Product on Hand right now?
+                        using (DatabaseContext context = new())
+                        {
+                            try
+                            {
+                                var oProduct = context.Products.Where(product => product.Id == iProductID).Single();
+                                Console.WriteLine("Yes!  " + oProduct.ProductName + " qty on hand: " + oProduct.QuantityOnHand);
+                                if (iProductQty > oProduct.QuantityOnHand)
+                                {
+                                    Console.WriteLine(" You are attempting to order more product than is available.");
+                                }
+                                else
+                                {
+                                    dProdPrice = oProduct.SalePrice;
+                                    bQtyAvailable = true;
+                                }
+
+                            }
+                            catch
+                            {
+                                Console.WriteLine(" Error looking up Product details.");
+                            }
+                        }
+
+                        // If we have enough product qantity on hand lets create a transaction and
+                        // then take the ordered quantity out of inventory
+                        if (bQtyAvailable)
+                        {
+                            try
+                            {
+                                using (DatabaseContext context = new())
+                                {
+                                    context.Transactions.Add(new Transaction(iCustomerID, iProductID, iProductCategory, iProductQty,
+                                        dProdPrice, (dProdPrice * iProductQty)));
+                                    context.SaveChanges();
+                                }
+                                Console.WriteLine("\n New Transaction Added.");
+                                bTryAgain = false;
+                            }
+                            catch
+                            {
+                                Console.Write("\n Transaction Add FAILED.");
+                            }
+                            // Take the ORDERED amount of Product OUT of INVENTORY 
+
+                        }
                         Console.ReadKey();
-                        goto PickProduct;
                     }
-
-
                 }
             }
 
@@ -228,7 +284,7 @@ class Program
             // 
             else // Invalid entry point by user
             {
-                Console.WriteLine("\n * * * Invalid Menu Selection, Try Again * * *\n");
+                Console.Write("\n * * * Invalid Menu Selection, Try Again * * *\n");
                 Console.ReadKey();
             }
         }
