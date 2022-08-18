@@ -300,6 +300,8 @@ class Program
         static void addStock()
         {
             int iProductCategory = -1;
+            int iAddStock = -1;
+            int iAddQuantity = -1;
             Console.WriteLine("Adding Stock");
             Console.WriteLine("Select Your Product Category:");
             using (DatabaseContext context = new())
@@ -322,7 +324,7 @@ class Program
             }
             catch
             {
-                Console.Write("Invalid selection");
+                Console.WriteLine("\n *** INVALID ENTRY ... PRESS ANY KEY TO CONTINUE ***\n");
                 Console.ReadKey();
                 return;
             }
@@ -330,12 +332,30 @@ class Program
             {
                 foreach (Product product in context.Products.Where(prod => prod.ProductCategoryId == iProductCategory))
                 {
-                    Console.WriteLine(product.Id + "   " + product.ProductName);
+                    Console.WriteLine("ID# " + product.Id + "       " + product.ProductName);
                 }
                 Console.WriteLine("Choose your Product (by number): ");
-                Console.ReadLine();
+                try
+                {
+                    iAddStock = Int32.Parse(Console.ReadLine() ?? "".Trim());
+                    Console.Write("Quantity to add: ");
+                    iAddQuantity = Int32.Parse(Console.ReadLine() ?? "".Trim());
+                }
+                catch
+                {
+                    Console.WriteLine("\n *** INVALID ENTRY ... PRESS ANY KEY TO CONTINUE ***\n");
+                    Console.ReadKey();
+                    return;
+                }
+                if (iAddQuantity > 0)
+                {
+                    Product theProduct = context.Products.Single(prod => prod.Id == iAddStock);
+                    theProduct.QuantityOnHand += iAddQuantity;
+                    context.SaveChanges();
+                }
             }
-
+            Console.WriteLine("\n *** STOCK ADDED...PRESS ANY KEY TO CONTINUE. ***\n");
+            Console.ReadKey();
         }
         static void removeStock()
         {
