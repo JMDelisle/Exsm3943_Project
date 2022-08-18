@@ -12,7 +12,21 @@ namespace ClassroomStart.Models
     [Index("ProductNameId", Name = "Product Name ID")]
     public partial class Transaction
     {
+        public Transaction()
+        {
+            // default constructor
+        }
 
+        public Transaction(int iCustomerID, int iProductID, int iProductCategory, int iQtyOrder, 
+            decimal dPrice, decimal dTotalPrice)
+        {
+            CustomerId = iCustomerID;
+            ProductNameId = iProductID;
+            ProductCategoryId = iProductCategory;
+            QuantityOrdered = iQtyOrder;
+            IndividualPrice = dPrice;
+            TotalPrice = dTotalPrice;
+        }
 
         [Key]
         [Column("ID", TypeName = "int(11)")]
