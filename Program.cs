@@ -20,6 +20,7 @@ class Program
         bool bFoundCustomer;
         string? sCustomerName;
         int iCustomerID;
+        string sCustAddress = "";
         int[] dicontinuedProduct = new int[99999];
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
@@ -29,6 +30,7 @@ class Program
             sCustomerName = "";
             iCustomerID = 0;
             username = "";
+            sCustAddress = "";
 
             Console.Clear();
 
@@ -54,6 +56,8 @@ class Program
                         bFoundCustomer = true;
                         sCustomerName = oCust.NameFirst + " " + oCust.NameLast;
                         iCustomerID = oCust.Id;
+                        sCustAddress = oCust.Address;
+
                     }
                     catch
                     {
@@ -109,7 +113,45 @@ class Program
                         }
                     }
                     Console.WriteLine("\n Enter the Product Category You Want: ");
-                    string? sProductCategory = Console.ReadLine();
+                    int iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+
+                    using (DatabaseContext context = new())
+                    {
+                        // Output All the products from the chosen Product Category
+                        foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
+                        {
+                            Console.Clear();
+                            Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
+                        }
+                    }
+                    PickProduct:
+                    Console.WriteLine("\n Enter the Product ID NUMBER of the PRODUCT you want to ORDER? ");
+                    int iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+
+                    try
+                    {
+                        //testing purposes below
+                        Console.WriteLine("\t the Customer is: " + sCustomerName);
+                        Console.WriteLine("\t the customer ID is: " + iCustomerID);
+                        Console.WriteLine("\t the customer address is: " + sCustAddress);
+                        Console.WriteLine("\t the product category selected is: " + iProductCategory + "\n\tThe product selected ID is: " + iProductSelectID );
+                      /*  using (DatabaseContext context = new())
+                        {
+                            context.Transactions.Add(new Transaction()  //Need to have all the customer Info wrote to the Transaction table here
+                            {
+
+                            });
+                        }
+                      */
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error Processing order.  Please try again...press any key to continue..." + ex.Message);
+                        Console.ReadKey();
+                        goto PickProduct;
+                    }
+
+
                 }
             }
 
@@ -203,41 +245,44 @@ class Program
                 }
             }
             Console.WriteLine("\n Enter the Product Category You Want: ");
-            int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
+            int ProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
         }
 
         static void removeStock()
         {
-            Console.WriteLine("Removing stock...press any key to continue...");
+            Console.WriteLine("\tRemoving stock...press any key to continue...");
             Console.ReadKey();
         }
 
         static void flagProduct()
         {
-            Console.WriteLine("Flagging Stock for DISCONTINUATION...press any key to continue...");
-            Console.ReadKey();
+            Console.WriteLine("\tFlagging Stock for DISCONTINUATION...please wait a moment...");
             using (DatabaseContext context = new())
             {
                 foreach (ProductCategory productCategory in context.ProductCategories.ToList())
                 {
-                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                    Console.WriteLine("\t" + productCategory.Id + " " + productCategory.CategoryName);
                 }
             }
 
-                Console.WriteLine("\n Enter the Product Category Number You Want to DISCONTINUE: ");
-                int iProductCategory = Int32.Parse(Console.ReadLine().Trim());
+             Console.WriteLine("\n\tEnter the Product Category Number You Want to DISCONTINUE: ");
+             int iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
 
-             using (DatabaseContext context = new())
+            using (DatabaseContext context = new())
              {
-                 foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory))
+                 foreach (Product product in context.Products.ToList().Where(p => p.ProductCategoryId == iProductCategory).ToList())
                  {
-                    Console.WriteLine(product.ProductName);
+                    Console.Clear();
+                    Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
                     Console.ReadKey();
                  }
              }
 
+            Console.WriteLine("\n Enter the Product ID NUMBER of the PRODUCT you want to DISCONTINUE");
+            int iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
 
-             
+            
+
         }
     }
  }
