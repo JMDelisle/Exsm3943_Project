@@ -191,14 +191,6 @@ class Program
             }
         }
 
-        static void removeStock()
-        {
-            Console.WriteLine("Removing stock...press any key to continue...");
-            Console.ReadKey();
-        }
-
-
-
         static void addStock()
         {
             Console.WriteLine("adding stock");
@@ -212,6 +204,12 @@ class Program
             }
             Console.WriteLine("\n Enter the Product Category You Want: ");
             int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
+        }
+
+        static void removeStock()
+        {
+            Console.WriteLine("Removing stock...press any key to continue...");
+            Console.ReadKey();
         }
 
         static void flagProduct()
@@ -229,18 +227,7 @@ class Program
                 int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
 
 
-
-
-
-
-
             }
-
-
-
         }
-
-
     }
-
  }
