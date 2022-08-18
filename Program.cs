@@ -336,21 +336,11 @@ class Program
                 Console.WriteLine("Choose your Product (by number): ");
                 Console.ReadLine();
             }
-
+            // now we need to ask how much of the product to add, and update the database, AND check the list to make sure that the product is not discontinued
         }
         static void removeStock()
         {
-            Console.WriteLine("\tRemoving stock...please wait a moment...");
-            Console.WriteLine("Select Your Product Category:");
-            using (DatabaseContext context = new())
-            {
-                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
-                {
-                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
-                }
-            }
-            Console.WriteLine("\n Enter the Product Category You Want: ");
-            int ProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+           //copy the code from add stock, and replace the addition math to subtraction math
         }
 
         static void flagProduct()
@@ -392,9 +382,15 @@ class Program
                 Console.WriteLine("Not a valid choice!");
             }
             discontinuedProduct.Add(iProductSelectID);
+            //testing purposes
+            foreach (int item in discontinuedProduct)
+            {
+                Console.WriteLine(item + "\nPress a key to continue...");
+                Console.ReadKey();
 
-            Console.WriteLine(discontinuedProduct);
-
+            }
+            
+            
         }
 
     }
