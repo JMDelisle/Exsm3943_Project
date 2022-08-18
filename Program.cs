@@ -306,8 +306,17 @@ class Program
 
         static void removeStock()
         {
-            Console.WriteLine("\tRemoving stock...press any key to continue...");
-            Console.ReadKey();
+            Console.WriteLine("\tRemoving stock...please wait a moment...");
+            Console.WriteLine("Select Your Product Category:");
+            using (DatabaseContext context = new())
+            {
+                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
+                {
+                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                }
+            }
+            Console.WriteLine("\n Enter the Product Category You Want: ");
+            int ProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
         }
 
         static void flagProduct()
@@ -326,9 +335,9 @@ class Program
 
             using (DatabaseContext context = new())
              {
-                 foreach (Product product in context.Products.ToList().Where(p => p.ProductCategoryId == iProductCategory).ToList())
+                 foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
                  {
-                    Console.Clear();
+                   
                     Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
                     Console.ReadKey();
                  }
