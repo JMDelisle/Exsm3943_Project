@@ -9,6 +9,7 @@ using System.Net;
 
 class Program
 {
+    public static List<int> discontinuedProduct = new List<int>();
     static void Main(string[] args)
     {
     Start:
@@ -25,7 +26,7 @@ class Program
         string? sProdCat;
         decimal dProdPrice = 0;
         bool bQtyAvailable = false;
-        int[] dicontinuedProduct = new int[99999];
+        
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
         {
@@ -359,21 +360,13 @@ class Program
         }
         static void removeStock()
         {
-            Console.WriteLine("\tRemoving stock...please wait a moment...");
-            Console.WriteLine("Select Your Product Category:");
-            using (DatabaseContext context = new())
-            {
-                foreach (ProductCategory productCategory in context.ProductCategories.ToList())
-                {
-                    Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
-                }
-            }
-            Console.WriteLine("\n Enter the Product Category You Want: ");
-            int ProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+           //copy the code from add stock, and replace the addition math to subtraction math
         }
 
         static void flagProduct()
         {
+            int iProductCategory = -1;
+            int iProductSelectID = -1;
             Console.WriteLine("\tFlagging Stock for DISCONTINUATION...please wait a moment...");
             using (DatabaseContext context = new())
             {
@@ -384,8 +377,14 @@ class Program
             }
 
              Console.WriteLine("\n\tEnter the Product Category Number You Want to DISCONTINUE: ");
-             int iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
-
+            try
+            {
+                 iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+            }
+            catch
+            {
+                Console.WriteLine("Not a valid choice!");
+            }
             using (DatabaseContext context = new())
              {
                  foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory).ToList())
@@ -393,12 +392,26 @@ class Program
                     Console.WriteLine("\t" + product.Id + "  " + product.ProductName);
                  }
              }
-
             Console.WriteLine("\n Enter the Product ID NUMBER of the PRODUCT you want to DISCONTINUE");
-            int iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+            try
+            {
+                iProductSelectID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+            }
+            catch
+            {
+                Console.WriteLine("Not a valid choice!");
+            }
+            discontinuedProduct.Add(iProductSelectID);
+            //testing purposes
+            foreach (int item in discontinuedProduct)
+            {
+                Console.WriteLine(item + "\nPress a key to continue...");
+                Console.ReadKey();
 
+            }
             
-
+            
         }
+
     }
  }
