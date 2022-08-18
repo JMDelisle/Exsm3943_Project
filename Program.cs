@@ -193,7 +193,7 @@ class Program
 
         static void addStock()
         {
-            Console.WriteLine("adding stock");
+            Console.WriteLine("Adding Stock");
             Console.WriteLine("Select Your Product Category:");
             using (DatabaseContext context = new())
             {
@@ -222,9 +222,18 @@ class Program
                 {
                     Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
                 }
+            }
 
                 Console.WriteLine("\n Enter the Product Category Number You Want to DISCONTINUE: ");
-                int ProductCategory = Int32.Parse(Console.ReadLine().Trim());
+                int iProductCategory = Int32.Parse(Console.ReadLine().Trim());
+
+            using (DatabaseContext context = new())
+            {
+                foreach (Product ProductName in context.Products.ToList().Where(ProductCategoryId == iProductCategory).ToList())
+                        // SELECT   ProductName FROM  Product  WHERE ProductCategoryId == ProductCategory
+                {
+                    Console.WriteLine(ProductName);
+                }
 
 
             }

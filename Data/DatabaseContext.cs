@@ -103,99 +103,224 @@ namespace ClassroomStart.Models
                     QuantityOnHand = 5,
                     Minimum = 4,
                     Cost = 500.00m,
+                },
+
+                new Product()
+                {
+                    Id = 4,
+                    ProductCategoryId = 1,
+                    ProductName = "Yellow Toner",
+                    QuantityOnHand = 2,
+                    Minimum = 3,
+                    Cost = 550.00m,
+                },
+                new Product()
+                {
+                    Id = 5,
+                    ProductCategoryId = 1,
+                    ProductName = "Green Toner",
+                    QuantityOnHand = 4,
+                    Minimum = 4,
+                    Cost = 325.00m,
+                },
+                new Product()
+                {
+                    Id = 6,
+                    ProductCategoryId = 1,
+                    ProductName = "Blue Toner",
+                    QuantityOnHand = 4,
+                    Minimum = 4,
+                    Cost = 420.00m,
+                },
+                new Product()
+                {
+                    Id = 7,
+                    ProductCategoryId = 1,
+                    ProductName = "Indigo Toner",
+                    QuantityOnHand = 4,
+                    Minimum = 4,
+                    Cost = 575.00m,
+                },
+                new Product()
+                {
+                    Id = 8,
+                    ProductCategoryId = 1,
+                    ProductName = "Violet Toner",
+                    QuantityOnHand = 2,
+                    Minimum = 4,
+                    Cost = 750.00m,
+                },
+                new Product()
+                {
+                    Id = 9,
+                    ProductCategoryId = 1,
+                    ProductName = "Gun Wash",
+                    QuantityOnHand = 10,
+                    Minimum = 6,
+                    Cost = 65.00m,
+                },
+                new Product()
+                {
+                    Id = 1,
+                    ProductCategoryId = 2,
+                    ProductName = "180 Grit Sandpaper",
+                    QuantityOnHand = 8,
+                    Minimum = 5,
+                    Cost = 75.00m,
+                },
+                new Product()
+                {
+                    Id = 2,
+                    ProductCategoryId = 2,
+                    ProductName = "220 Grit Sandpaper",
+                    QuantityOnHand = 9,
+                    Minimum = 5,
+                    Cost = 75.00m,
+                },
+                new Product()
+                {
+                    Id = 3,
+                    ProductCategoryId = 2,
+                    ProductName = "320 Grit Sandpaper",
+                    QuantityOnHand = 6,
+                    Minimum = 5,
+                    Cost = 85.00m,
+                },
+                new Product()
+                {
+                    Id = 4,
+                    ProductCategoryId = 2,
+                    ProductName = "400 Grit Sandpaper",
+                    QuantityOnHand = 6,
+                    Minimum = 5,
+                    Cost = 85.00m,
+                },
+                new Product()
+                {
+                    Id = 5,
+                    ProductCategoryId = 2,
+                    ProductName = "600 Grit Sandpaper",
+                    QuantityOnHand = 3,
+                    Minimum = 5,
+                    Cost = 85.00m,
+                },
+                new Product()
+                {
+                    Id = 6,
+                    ProductCategoryId = 2,
+                    ProductName = "800 Grit Sandpaper",
+                    QuantityOnHand = 6,
+                    Minimum = 5,
+                    Cost = 85.00m,
+                },
+                new Product()
+                {
+                    Id = 7,
+                    ProductCategoryId = 2,
+                    ProductName = "1500 Grit Sandpaper",
+                    QuantityOnHand = 6,
+                    Minimum = 5,
+                    Cost = 55.00m,
+                },
+                new Product()
+                {
+                    Id = 1,
+                    ProductCategoryId = 3,
+                    ProductName = "Bronze Bondo",
+                    QuantityOnHand = 6,
+                    Minimum = 5,
+                    Cost = 35.00m,
+                },
+                new Product()
+                {
+                    Id = 2,
+                    ProductCategoryId = 3,
+                    ProductName = "Silver Bondo",
+                    QuantityOnHand = 4,
+                    Minimum = 5,
+                    Cost = 45.00m,
+                },
+                new Product()
+                {
+                    Id = 3,
+                    ProductCategoryId = 3,
+                    ProductName = "Gold Bondo",
+                    QuantityOnHand = 1,
+                    Minimum = 5,
+                    Cost = 65.00m,
+                },
+                new Product()
+                {
+                    Id = 4,
+                    ProductCategoryId = 3,
+                    ProductName = "Finishing Putty",
+                    QuantityOnHand = 4,
+                    Minimum = 5,
+                    Cost = 30.00m,
+                },
+                new Product()
+                {
+                    Id = 1,
+                    ProductCategoryId = 4,
+                    ProductName = "Coveralls",
+                    QuantityOnHand = 4,
+                    Minimum = 10,
+                    Cost = 45.00m,
+                },
+                new Product()
+                {
+                    Id = 2,
+                    ProductCategoryId = 4,
+                    ProductName = "Respirator",
+                    QuantityOnHand = 4,
+                    Minimum = 6,
+                    Cost = 45.00m,
+                },
+                new Product()
+                {
+                    Id = 3,
+                    ProductCategoryId = 4,
+                    ProductName = "Gloves",
+                    QuantityOnHand = 15,
+                    Minimum = 65,
+                    Cost = 30.00m,
+                },
+                new Product()
+                {
+                    Id = 1,
+                    ProductCategoryId = 5,
+                    ProductName = "Rags",
+                    QuantityOnHand = 15,
+                    Minimum = 65,
+                    Cost = 10.00m,
+                },
+                new Product()
+                {
+                    Id = 2,
+                    ProductCategoryId = 5,
+                    ProductName = "Razor Blades",
+                    QuantityOnHand = 75,
+                    Minimum = 65,
+                    Cost = 5.00m,
+                },
+                new Product()
+                {
+                    Id = 3,
+                    ProductCategoryId = 5,
+                    ProductName = "Masking Paper",
+                    QuantityOnHand = 15,
+                    Minimum = 10,
+                    Cost = 40.00m,
+                },
+                new Product()
+                {
+                    Id = 4,
+                    ProductCategoryId = 5,
+                    ProductName = "Masking Tape",
+                    QuantityOnHand = 155,
+                    Minimum = 65,
+                    Cost = 6.00m,
                 }
-
-               /* new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },
-                new Product()
-                {
-                    Id = ,
-                    ProductCategoryId = ,
-                    ProductName = "",
-                    QuantityOnHand = ,
-                    Minimum = ,
-                    Cost = m,
-                },*/
-
         );
 
             modelBuilder.Entity<Customer>().HasData(new Customer()
