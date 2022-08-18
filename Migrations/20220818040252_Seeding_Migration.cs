@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassroomStart.Migrations
 {
-    public partial class initialmigrations_tom : Migration
+    public partial class Seeding_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -151,7 +151,31 @@ namespace ClassroomStart.Migrations
                     { 1, 225.00m, 4, 1, "White Toner", 6, 360.000m },
                     { 2, 200.00m, 4, 1, "Black Toner", 3, 320.000m },
                     { 3, 600.00m, 4, 1, "Red Toner", 5, 960.000m },
-                    { 4, 500.00m, 4, 1, "Orange Toner", 5, 800.000m }
+                    { 4, 500.00m, 4, 1, "Orange Toner", 5, 800.000m },
+                    { 5, 550.00m, 3, 1, "Yellow Toner", 2, 880.000m },
+                    { 6, 325.00m, 4, 1, "Green Toner", 4, 520.000m },
+                    { 7, 420.00m, 4, 1, "Blue Toner", 4, 672.000m },
+                    { 8, 575.00m, 4, 1, "Indigo Toner", 4, 920.000m },
+                    { 9, 750.00m, 4, 1, "Violet Toner", 2, 1200.000m },
+                    { 10, 65.00m, 6, 1, "Gun Wash", 10, 104.000m },
+                    { 11, 75.00m, 5, 2, "180 Grit Sandpaper", 8, 120.000m },
+                    { 12, 75.00m, 5, 2, "220 Grit Sandpaper", 9, 120.000m },
+                    { 13, 85.00m, 5, 2, "320 Grit Sandpaper", 6, 136.000m },
+                    { 14, 85.00m, 5, 2, "400 Grit Sandpaper", 6, 136.000m },
+                    { 15, 85.00m, 5, 2, "600 Grit Sandpaper", 3, 136.000m },
+                    { 16, 85.00m, 5, 2, "800 Grit Sandpaper", 6, 136.000m },
+                    { 17, 55.00m, 5, 2, "1500 Grit Sandpaper", 6, 88.000m },
+                    { 18, 35.00m, 5, 3, "Bronze Bondo", 6, 56.000m },
+                    { 19, 45.00m, 5, 3, "Silver Bondo", 4, 72.000m },
+                    { 20, 65.00m, 5, 3, "Gold Bondo", 1, 104.000m },
+                    { 21, 30.00m, 5, 3, "Finishing Putty", 4, 48.000m },
+                    { 22, 45.00m, 10, 4, "Coveralls", 4, 72.000m },
+                    { 23, 45.00m, 6, 4, "Respirator", 4, 72.000m },
+                    { 24, 30.00m, 65, 4, "Gloves", 15, 48.000m },
+                    { 25, 10.00m, 65, 5, "Rags", 15, 16.000m },
+                    { 26, 5.00m, 65, 5, "Razor Blades", 75, 8.000m },
+                    { 27, 40.00m, 10, 5, "Masking Paper", 15, 64.000m },
+                    { 28, 6.00m, 65, 5, "Masking Tape", 155, 9.600m }
                 });
 
             migrationBuilder.CreateIndex(

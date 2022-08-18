@@ -227,16 +227,17 @@ class Program
                 Console.WriteLine("\n Enter the Product Category Number You Want to DISCONTINUE: ");
                 int iProductCategory = Int32.Parse(Console.ReadLine().Trim());
 
-            using (DatabaseContext context = new())
-            {
-                foreach (Product ProductName in context.Products.ToList().Where(ProductCategoryId == iProductCategory).ToList())
-                        // SELECT   ProductName FROM  Product  WHERE ProductCategoryId == ProductCategory
-                {
-                    Console.WriteLine(ProductName);
-                }
+             using (DatabaseContext context = new())
+             {
+                 foreach (Product product in context.Products.Where(p => p.ProductCategoryId == iProductCategory))
+                 {
+                    Console.WriteLine(product.ProductName);
+                    Console.ReadKey();
+                 }
+             }
 
 
-            }
+             
         }
     }
  }

@@ -216,6 +216,246 @@ namespace ClassroomStart.Migrations
                             ProductName = "Orange Toner",
                             QuantityOnHand = 5,
                             SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Cost = 550.00m,
+                            Minimum = 3,
+                            ProductCategoryId = 1,
+                            ProductName = "Yellow Toner",
+                            QuantityOnHand = 2,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Cost = 325.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Green Toner",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Cost = 420.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Blue Toner",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Cost = 575.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Indigo Toner",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Cost = 750.00m,
+                            Minimum = 4,
+                            ProductCategoryId = 1,
+                            ProductName = "Violet Toner",
+                            QuantityOnHand = 2,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Cost = 65.00m,
+                            Minimum = 6,
+                            ProductCategoryId = 1,
+                            ProductName = "Gun Wash",
+                            QuantityOnHand = 10,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Cost = 75.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "180 Grit Sandpaper",
+                            QuantityOnHand = 8,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Cost = 75.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "220 Grit Sandpaper",
+                            QuantityOnHand = 9,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Cost = 85.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "320 Grit Sandpaper",
+                            QuantityOnHand = 6,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Cost = 85.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "400 Grit Sandpaper",
+                            QuantityOnHand = 6,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Cost = 85.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "600 Grit Sandpaper",
+                            QuantityOnHand = 3,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Cost = 85.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "800 Grit Sandpaper",
+                            QuantityOnHand = 6,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Cost = 55.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 2,
+                            ProductName = "1500 Grit Sandpaper",
+                            QuantityOnHand = 6,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Cost = 35.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 3,
+                            ProductName = "Bronze Bondo",
+                            QuantityOnHand = 6,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Cost = 45.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 3,
+                            ProductName = "Silver Bondo",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Cost = 65.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 3,
+                            ProductName = "Gold Bondo",
+                            QuantityOnHand = 1,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Cost = 30.00m,
+                            Minimum = 5,
+                            ProductCategoryId = 3,
+                            ProductName = "Finishing Putty",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Cost = 45.00m,
+                            Minimum = 10,
+                            ProductCategoryId = 4,
+                            ProductName = "Coveralls",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Cost = 45.00m,
+                            Minimum = 6,
+                            ProductCategoryId = 4,
+                            ProductName = "Respirator",
+                            QuantityOnHand = 4,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Cost = 30.00m,
+                            Minimum = 65,
+                            ProductCategoryId = 4,
+                            ProductName = "Gloves",
+                            QuantityOnHand = 15,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Cost = 10.00m,
+                            Minimum = 65,
+                            ProductCategoryId = 5,
+                            ProductName = "Rags",
+                            QuantityOnHand = 15,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Cost = 5.00m,
+                            Minimum = 65,
+                            ProductCategoryId = 5,
+                            ProductName = "Razor Blades",
+                            QuantityOnHand = 75,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Cost = 40.00m,
+                            Minimum = 10,
+                            ProductCategoryId = 5,
+                            ProductName = "Masking Paper",
+                            QuantityOnHand = 15,
+                            SalePrice = 0m
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Cost = 6.00m,
+                            Minimum = 65,
+                            ProductCategoryId = 5,
+                            ProductName = "Masking Tape",
+                            QuantityOnHand = 155,
+                            SalePrice = 0m
                         });
                 });
 

@@ -107,7 +107,7 @@ namespace ClassroomStart.Models
 
                 new Product()
                 {
-                    Id = 4,
+                    Id = 5,
                     ProductCategoryId = 1,
                     ProductName = "Yellow Toner",
                     QuantityOnHand = 2,
@@ -116,7 +116,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 5,
+                    Id = 6,
                     ProductCategoryId = 1,
                     ProductName = "Green Toner",
                     QuantityOnHand = 4,
@@ -125,7 +125,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 6,
+                    Id = 7,
                     ProductCategoryId = 1,
                     ProductName = "Blue Toner",
                     QuantityOnHand = 4,
@@ -134,7 +134,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 7,
+                    Id = 8,
                     ProductCategoryId = 1,
                     ProductName = "Indigo Toner",
                     QuantityOnHand = 4,
@@ -143,7 +143,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 8,
+                    Id = 9,
                     ProductCategoryId = 1,
                     ProductName = "Violet Toner",
                     QuantityOnHand = 2,
@@ -152,7 +152,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 9,
+                    Id = 10,
                     ProductCategoryId = 1,
                     ProductName = "Gun Wash",
                     QuantityOnHand = 10,
@@ -161,7 +161,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 1,
+                    Id = 11,
                     ProductCategoryId = 2,
                     ProductName = "180 Grit Sandpaper",
                     QuantityOnHand = 8,
@@ -170,7 +170,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 2,
+                    Id = 12,
                     ProductCategoryId = 2,
                     ProductName = "220 Grit Sandpaper",
                     QuantityOnHand = 9,
@@ -179,7 +179,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 3,
+                    Id = 13,
                     ProductCategoryId = 2,
                     ProductName = "320 Grit Sandpaper",
                     QuantityOnHand = 6,
@@ -188,7 +188,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 4,
+                    Id = 14,
                     ProductCategoryId = 2,
                     ProductName = "400 Grit Sandpaper",
                     QuantityOnHand = 6,
@@ -197,7 +197,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 5,
+                    Id = 15,
                     ProductCategoryId = 2,
                     ProductName = "600 Grit Sandpaper",
                     QuantityOnHand = 3,
@@ -206,7 +206,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 6,
+                    Id = 16,
                     ProductCategoryId = 2,
                     ProductName = "800 Grit Sandpaper",
                     QuantityOnHand = 6,
@@ -215,7 +215,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 7,
+                    Id = 17,
                     ProductCategoryId = 2,
                     ProductName = "1500 Grit Sandpaper",
                     QuantityOnHand = 6,
@@ -224,7 +224,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 1,
+                    Id = 18,
                     ProductCategoryId = 3,
                     ProductName = "Bronze Bondo",
                     QuantityOnHand = 6,
@@ -233,7 +233,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 2,
+                    Id = 19,
                     ProductCategoryId = 3,
                     ProductName = "Silver Bondo",
                     QuantityOnHand = 4,
@@ -242,7 +242,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 3,
+                    Id = 20,
                     ProductCategoryId = 3,
                     ProductName = "Gold Bondo",
                     QuantityOnHand = 1,
@@ -251,7 +251,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 4,
+                    Id = 21,
                     ProductCategoryId = 3,
                     ProductName = "Finishing Putty",
                     QuantityOnHand = 4,
@@ -260,7 +260,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 1,
+                    Id = 22,
                     ProductCategoryId = 4,
                     ProductName = "Coveralls",
                     QuantityOnHand = 4,
@@ -269,7 +269,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 2,
+                    Id = 23,
                     ProductCategoryId = 4,
                     ProductName = "Respirator",
                     QuantityOnHand = 4,
@@ -278,7 +278,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 3,
+                    Id = 24,
                     ProductCategoryId = 4,
                     ProductName = "Gloves",
                     QuantityOnHand = 15,
@@ -287,7 +287,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 1,
+                    Id = 25,
                     ProductCategoryId = 5,
                     ProductName = "Rags",
                     QuantityOnHand = 15,
@@ -296,7 +296,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 2,
+                    Id = 26,
                     ProductCategoryId = 5,
                     ProductName = "Razor Blades",
                     QuantityOnHand = 75,
@@ -305,7 +305,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 3,
+                    Id = 27,
                     ProductCategoryId = 5,
                     ProductName = "Masking Paper",
                     QuantityOnHand = 15,
@@ -314,7 +314,7 @@ namespace ClassroomStart.Models
                 },
                 new Product()
                 {
-                    Id = 4,
+                    Id = 28,
                     ProductCategoryId = 5,
                     ProductName = "Masking Tape",
                     QuantityOnHand = 155,
