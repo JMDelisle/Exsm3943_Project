@@ -25,6 +25,7 @@ class Program
         string sCustAddress = "";
         string? sProdCat;
         decimal dProdPrice = 0;
+        int iProdInv = 0;
         bool bQtyAvailable = false;
         
         // MAIN MENU LOOP STARTS HERE
@@ -40,7 +41,10 @@ class Program
             Console.Clear();
 
             //Displayed Menu
-            Console.WriteLine("\t\t\t\t\tBits and Bytes Autobody Shop \n\n\t\t\t\t\t\tNOT LOGGED IN \n\n\t\t\t\t\t\t Main Menu \t\n 1) Login \t\n 2) Admin Menu \t\n 3) Exit ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\t\t\t\t\tBits and Bytes Autobody Shop");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(" \n\t\t\t\t\t\t Main Menu \t\n 1) Login \t\n 2) Admin Menu \t\n 3) Exit ");
             Console.Write(" Please choose: ");
             string? input = Console.ReadLine();
 
@@ -53,7 +57,7 @@ class Program
                 // Querry on database for the customers table on the phone number column
                 using (DatabaseContext context = new())
                 {
-                    //Debug: Sandy, 321-999-5657
+                    //Debug: Sandy, 321-999-5657, 331-423-0749
                     try
                     {
                         var oCust = context.Customers.Where(customer => customer.PhoneNumber == sCustomerPhoneNumber).Single();
@@ -122,23 +126,30 @@ class Program
                             Console.WriteLine("\t" + productCategory.Id + "\t" + productCategory.CategoryName);
                         }
                     }
-                    Console.Write("\n Enter the Product Category You Want: ");
+                    
+                    Console.Write("\n Enter the Product Category You Want [0 to Cancel]: ");
                     int iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+                    bool bTryAgain = true; 
+                    if (iProductCategory < 1) bTryAgain = false;
+
                     sProdCat = "";
-                    using (DatabaseContext context = new())
+                    if (bTryAgain)
                     {
-                        try
+                        using (DatabaseContext context = new())
                         {
-                            var oProdCat = context.ProductCategories.Where(category => category.Id == iProductCategory).Single();
-                            Console.WriteLine("Yes!  " + oProdCat.CategoryName);
-                            sProdCat = oProdCat.CategoryName;
-                        }
-                        catch
-                        {
-                            Console.WriteLine(" Error looking up Product Category Name.");
+                            try
+                            {
+                                var oProdCat = context.ProductCategories.Where(category => category.Id == iProductCategory).Single();
+                                Console.WriteLine("Yes!  " + oProdCat.CategoryName);
+                                sProdCat = oProdCat.CategoryName;
+                            }
+                            catch
+                            {
+                                Console.WriteLine(" Error looking up Product Category Name.");
+                            }
                         }
                     }
-                    bool bTryAgain = true;
+
                     while (bTryAgain)
                     {
                         // Clear console and display all products, could use a counter to display product in pages in Version 2.0
@@ -156,65 +167,94 @@ class Program
                             }
                         }
 
-                        Console.Write("\n Enter the Product ID you want to Order: ");
-                        int iProductID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
-                        Console.Write("\n What Quantity do you want to Order: ");
-                        int iProductQty = Int32.Parse(Console.ReadLine() ?? " ".Trim());
-                        bQtyAvailable = false;
-                        // Do what have the requested quantity of Product on Hand right now?
-                        using (DatabaseContext context = new())
-                        {
-                            try
-                            {
-                                var oProduct = context.Products.Where(product => product.Id == iProductID).Single();
-                                Console.WriteLine("Yes!  " + oProduct.ProductName + " qty on hand: " + oProduct.QuantityOnHand);
-                                if (iProductQty > oProduct.QuantityOnHand)
-                                {
-                                    Console.WriteLine(" You are attempting to order more product than is available.");
-                                }
-                                else
-                                {
-                                    dProdPrice = oProduct.SalePrice;
-                                    bQtyAvailable = true;
-                                }
+                        int iProductID = 0;
+                        int iProductQty = 0;
 
-                            }
-                            catch
-                            {
-                                Console.WriteLine(" Error looking up Product details.");
-                            }
+                        Console.Write("\n Enter the Product ID you want to Order [0 to Cancel]: ");
+                        iProductID = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+                        if (iProductID < 1) bTryAgain = false;
+
+                        if (bTryAgain)
+                        {
+                            Console.Write("\n What Quantity do you want to Order [0 to Cancel]: ");
+                            iProductQty = Int32.Parse(Console.ReadLine() ?? " ".Trim());
+                            if (iProductQty < 1) bTryAgain = false;
                         }
 
-                        // If we have enough product qantity on hand lets create a transaction and
-                        // then take the ordered quantity out of inventory
-                        if (bQtyAvailable)
-                        {/* Need to set a variable to save the extended price, and the total price to save into the Transaction table */
-                            try
+                        if (bTryAgain)
+                        {
+                            bQtyAvailable = false;
+                            // Do what have the requested quantity of Product on Hand right now?
+                            dProdPrice = 0;
+                            iProdInv = 0;
+                            using (DatabaseContext context = new())
                             {
+                                try
+                                {
+                                    var oProduct = context.Products.Where(product => product.Id == iProductID).Single();
+                                    // Console.WriteLine("Yes!  " + oProduct.ProductName + " qty on hand: " + oProduct.QuantityOnHand);
+                                    if (iProductQty > oProduct.QuantityOnHand)
+                                    {
+                                        Console.WriteLine(" You are attempting to order more "+ oProduct.ProductName +" than is available.");
+                                    }
+                                    else
+                                    {
+                                        dProdPrice = oProduct.SalePrice;
+                                        iProdInv = oProduct.QuantityOnHand;
+                                        bQtyAvailable = true;
+                                    }
+
+                                }
+                                catch
+                                {
+                                    Console.WriteLine(" Error looking up Product details.");
+                                }
+                            }
+
+                            // If we have enough product qantity on hand lets create a transaction and
+                            // then take the ordered quantity out of inventory
+                            if (bQtyAvailable)
+                            {/* Need to set a variable to save the extended price, and the total price to save into the Transaction table */
+                                try
+                                {
+                                    using (DatabaseContext context = new())
+                                    {
+                                        context.Transactions.Add(new Transaction(iCustomerID, iProductID, iProductCategory, iProductQty,
+                                            dProdPrice, (dProdPrice * iProductQty)));
+                                        context.SaveChanges();
+                                    }
+                                    Console.WriteLine("\n New Transaction Added.");
+                                    bTryAgain = false;
+                                }
+                                catch
+                                {
+                                    Console.Write("\n Transaction Add FAILED.");
+                                }
+                                // Take the ORDERED amount of Product OUT of INVENTORY 
                                 using (DatabaseContext context = new())
                                 {
-                                    Transaction newtrans = new Transaction();
-                                    newtrans.CustomerId = iCustomerID;
-                                    newtrans.ProductCategoryId = iProductID;
-                                    newtrans.ProductCategoryId = iProductID;
-                                    newtrans.TimeDateOfOrder = DateTime.Now;
-                                    newtrans.QuantityOrdered = iProductQty;
-                                    newtrans.IndividualPrice = dProdPrice;
-                                    newtrans.ExtendedPrice = dProdPrice * iProductQty;
-                                    newtrans.TotalPrice = dProdPrice * iProductQty;
-                                    context.Add(newtrans);
-                                    context.SaveChanges();
+                                    try
+                                    {
+                                        var oProduct = context.Products.Where(product => product.Id == iProductID).Single();
+                                        // Console.WriteLine("Yes!  " + oProduct.ProductName);
+                                        oProduct.QuantityOnHand = oProduct.QuantityOnHand - iProductQty;
+                                        context.SaveChanges();
+                                        Console.WriteLine("\n Inventory Udpated.");
+                                        bTryAgain = false;
+                                    }
+                                    catch
+                                    {
+                                        // If we couldnt find the matching product by ID then... wow... thats bad...
+                                        Console.Write("\n Invenotry Updated FAILED.");
+                                    }
                                 }
-                                Console.WriteLine("\n New Transaction Added.");
-
                             }
-                            catch
-                            {
-                                Console.Write("\n Transaction Add FAILED.");
-                            }
-                            // Take the ORDERED amount of Product OUT of INVENTORY 
 
                         }
+                        else {
+                            Console.WriteLine("Order Canceled by User.");
+                        }
+                        Console.Write("\n Press any key to continue.");
                         Console.ReadKey();
                     }
                 }
@@ -304,7 +344,9 @@ class Program
             int iAddStock = -1;
             int iAddQuantity = -1;
             Console.WriteLine("Adding Stock");
-            Console.WriteLine("Select Your Product Category:");
+            Console.WriteLine("Select Your Product Category: Please wait a moment");
+            Console.WriteLine("\t---|-----------------|----------");
+
             using (DatabaseContext context = new())
             {
                 foreach (ProductCategory productCategory in context.ProductCategories.ToList())
@@ -368,7 +410,7 @@ class Program
                 }
                 catch
                 {
-                    Console.WriteLine("\n *** INVALID ENTRY ... PRESS ANY KEY TO CONTINUE ***\n");
+                    Console.WriteLine("\n *** STOCK ADDED ... PRESS ANY KEY TO CONTINUE ***\n");
                     Console.ReadKey();
                     return;
                 }
@@ -379,7 +421,6 @@ class Program
                     context.SaveChanges();
                 }
             }
-            // now we need to ask how much of the product to add, and update the database, AND check the list to make sure that the product is not discontinued
         }
         static void removeStock()
         {
