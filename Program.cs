@@ -278,10 +278,6 @@ class Program
                 {
                     //  Admin Menu Here
                     // ------------
-                    // 1) Add Stock
-                    // 2) Remove Stock
-                    // 3) Flag product as discontinued
-                    // 0) Exit
                     int adminSelection = -1;
                     while (adminSelection != 4)
                     {
@@ -430,20 +426,7 @@ class Program
                 }
             }
         }
-       /* static void checkList()
-        {
-            using (DatabaseContext context = new DatabaseContext())
-            {
-                foreach (Product ids in context.Products)
-                {
-                    context.Entry(ids).Reference(id => id.Id).ToList();
-
-                    
-                }
-            }            
-        }   
-        */
-        
+     
         static void removeStock()
         {
             int iProductCategory = -1;
@@ -544,14 +527,14 @@ class Program
                 Console.WriteLine("Not a valid choice!");
             }
             discontinuedProduct.Add(iProductSelectID);
-            //testing purposes  ****this needs to be commented out for final submission
-            foreach (int item in discontinuedProduct)
+            //testing purposes  
+           /* foreach (int item in discontinuedProduct)
             {
                 Console.WriteLine(item + "\nPress a key to continue...");
                 Console.ReadKey();
 
             }
-            
+            */
             
         }
     }
