@@ -360,7 +360,65 @@ class Program
         }
         static void removeStock()
         {
-           //copy the code from add stock, and replace the addition math to subtraction math
+                int iProductCategory = -1;
+                int iRemoveStock = -1;
+                int iRemoveQuantity = -1;
+                Console.WriteLine("Removing Stock");
+                Console.WriteLine("Select Your Product Category:");
+                using (DatabaseContext context = new())
+                {
+                    foreach (ProductCategory productCategory in context.ProductCategories.ToList())
+                    {
+                        Console.WriteLine(productCategory.Id + " " + productCategory.CategoryName);
+                    }
+                }
+                Console.WriteLine("\n Enter the Product Category You Want: ");
+                try
+                {
+                    iProductCategory = Int32.Parse((Console.ReadLine() ?? " ").Trim());
+                    if (iProductCategory < 1 || iProductCategory > 5)
+                    {
+                        Console.WriteLine("\n *** INVALID CATEGORY ... PRESS ANY KEY TO CONTINUE ***\n");
+                        Console.ReadKey();
+                        return;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("\n *** INVALID ENTRY ... PRESS ANY KEY TO CONTINUE ***\n");
+                    Console.ReadKey();
+                    return;
+                }
+                using (DatabaseContext context = new())
+                {
+                    foreach (Product product in context.Products.Where(prod => prod.ProductCategoryId == iProductCategory))
+                    {
+                        Console.WriteLine("ID# " + product.Id + "       " + product.ProductName);
+                    }
+                    Console.WriteLine("Choose your Product (by number): ");
+                    try
+                    {
+                        iRemoveStock = Int32.Parse(Console.ReadLine() ?? "".Trim());
+                        Console.Write("Quantity to remove: ");
+                        iRemoveQuantity = Int32.Parse(Console.ReadLine() ?? "".Trim());
+                    }
+                    catch
+                    {
+                        Console.WriteLine("\n *** INVALID ENTRY ... PRESS ANY KEY TO CONTINUE ***\n");
+                        Console.ReadKey();
+                        return;
+                    }
+                    if (iRemoveQuantity > 0)
+                    {
+                        Product theProduct = context.Products.Single(prod => prod.Id == iRemoveStock);
+                        theProduct.QuantityOnHand -= iRemoveQuantity;
+                        context.SaveChanges();
+                    }
+                }
+                Console.WriteLine("\n *** STOCK REMOVED...PRESS ANY KEY TO CONTINUE. ***\n");
+                Console.ReadKey();
+            }
+            //copy the code from add stock, and replace the addition math to subtraction math
         }
 
         static void flagProduct()
@@ -413,5 +471,5 @@ class Program
             
         }
 
-    }
- }
+}
+ 
