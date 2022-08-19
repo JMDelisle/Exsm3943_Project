@@ -339,6 +339,24 @@ class Program
                 try
                 {
                     iAddStock = Int32.Parse(Console.ReadLine() ?? "".Trim());
+                    Console.Write("Quantity to add: ");
+                    iAddQuantity = Int32.Parse(Console.ReadLine() ?? "".Trim());
+                }
+                catch
+                {
+                    Console.WriteLine("\n *** INVALID ENTRY ... PRESS ANY KEY TO CONTINUE ***\n");
+                    Console.ReadKey();
+                    return;
+                }
+                if (iAddQuantity > 0)
+                {
+                    Product theProduct = context.Products.Single(prod => prod.Id == iAddStock);
+                    theProduct.QuantityOnHand += iAddQuantity;
+                    context.SaveChanges();
+                }
+                try
+                {
+                    iAddStock = Int32.Parse(Console.ReadLine() ?? "".Trim());
                     if (discontinuedProduct.Contains(iAddStock))
                     {
                         Console.WriteLine("Discontinued product...Not able to add to inventory!!...press any key...");
@@ -361,6 +379,7 @@ class Program
                     context.SaveChanges();
                 }
             }
+            // now we need to ask how much of the product to add, and update the database, AND check the list to make sure that the product is not discontinued
         }
         static void removeStock()
         {
