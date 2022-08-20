@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Text.RegularExpressions;
+using Xunit;
+using System.Globalization;
 
 class Program
 {
@@ -28,6 +31,7 @@ class Program
         decimal dProdPrice = 0;
         int iProdInv = 0;
         bool bQtyAvailable = false;
+        bool bGoodPhoneNumber = false;
         
         // MAIN MENU LOOP STARTS HERE
         while (bInMenu)
@@ -52,9 +56,20 @@ class Program
             // Customer Login to their account
             if (input == "1")
             {
-
-                Console.Write("\n Enter your account phone number: ");
+                PhoneNumber:
+                Console.Write("\n Enter your account phone number in the format of 555-555-5555: ");
                 string? sCustomerPhoneNumber = Console.ReadLine();
+                //Validate the user's phone number 
+#pragma warning disable CS8604 // Possible null reference argument.
+                bGoodPhoneNumber = TestPhoneNumber(sCustomerPhoneNumber);
+#pragma warning restore CS8604 // Possible null reference argument.
+                if (!bGoodPhoneNumber)
+                {
+                    Console.WriteLine("\t***PHONE NUMBER ENTERED IN WRONG FORMAT! Please try again...\n....press any key to continue...");
+                    Console.ReadKey();
+                    goto PhoneNumber;
+                }
+
                 // Querry on database for the customers table on the phone number column
                 using (DatabaseContext context = new())
                 {
@@ -76,7 +91,7 @@ class Program
                 //To test if the current customer.PhoneNumber = the phone number the user entered (in variable PhoneNumber)
                 if (!bFoundCustomer)
                 {
-                    Console.Write("\n Phone number not found, Would you like to add it to the system [Y/N]? ");
+                    Console.Write("\n Customer PHONE NUMBER not found. Would you like to become a NEW CUSTOMER [Y/N]? ");
                     string? sAnswer = Console.ReadLine();
                     if (sAnswer == null) { sAnswer = ""; } else { sAnswer = sAnswer.Trim().ToUpper(); }
                     if (sAnswer == "Y")
@@ -313,7 +328,6 @@ class Program
                         {
                             Console.WriteLine("Not a good menu choice!  Dummy...\n\tPress any key to continue.......");
                             Console.ReadKey();
-
                             goto AdminMenu;
                         }
                     }
@@ -326,15 +340,14 @@ class Program
                 Console.WriteLine("\n Goodbye " + "\n");
                 bInMenu = false;
             }
-
             // 
             else // Invalid entry point by user
             {
-                Console.Write("\n * * * Invalid Menu Selection, Try Again * * *\n");
+                Console.Write("\n * * * Invalid Menu Selection, Try Again * * *\n...press any key to continue");
                 Console.ReadKey();
             }
         }
-
+        // Functions for the Admin Menu
         static void addStock()
         {
             int iProductCategory = -1;
@@ -537,6 +550,13 @@ class Program
             */
             
         }
+
+        static bool TestPhoneNumber(string sUserPhoneNumberTest)
+        {
+            return new Regex(@"\d\d\d-\d\d\d-\d\d\d\d").IsMatch(sUserPhoneNumberTest);
+        }
+
     }
+   
 }
- 
+
