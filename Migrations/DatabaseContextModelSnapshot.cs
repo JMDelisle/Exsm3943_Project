@@ -53,7 +53,7 @@ namespace ClassroomStart.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("customer");
+                    b.ToTable("customer", (string)null);
 
                     b.HasData(
                         new
@@ -174,7 +174,7 @@ namespace ClassroomStart.Migrations
 
                     b.HasIndex(new[] { "ProductCategoryId" }, "Product Category ID");
 
-                    b.ToTable("products");
+                    b.ToTable("products", (string)null);
 
                     b.HasData(
                         new
@@ -474,7 +474,7 @@ namespace ClassroomStart.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("product category");
+                    b.ToTable("product category", (string)null);
 
                     b.HasData(
                         new
@@ -554,7 +554,7 @@ namespace ClassroomStart.Migrations
 
                     b.HasIndex(new[] { "ProductNameId" }, "Product Name ID");
 
-                    b.ToTable("transactions");
+                    b.ToTable("transactions", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomStart.Models.Product", b =>
